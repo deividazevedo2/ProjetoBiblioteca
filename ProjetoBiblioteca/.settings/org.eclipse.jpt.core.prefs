@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+org.eclipse.jpt.core.platform=generic2_0
+org.eclipse.jpt.jpa.core.discoverAnnotatedClasses=true
+problem.EMBEDDED_ID_CLASS_SHOULD_BE_PUBLIC=error
+problem.INVERSE_JOIN_COLUMN_UNRESOLVED_NAME=error
+problem.PERSISTENT_ATTRIBUTE_PUBLIC_FIELD=error
+problem.TYPE_MAPPING_ID_CLASS_MISSING_PUBLIC_NO_ARG_CONSTRUCTOR=error
+problem.TYPE_MAPPING_ID_CLASS_PROPERTY_METHOD_NOT_PUBLIC=error
+problem.VIRTUAL_ASSOCIATION_OVERRIDE_JOIN_TABLE_UNRESOLVED_CATALOG=error
+workspace_validation_preferences_overridden=true
