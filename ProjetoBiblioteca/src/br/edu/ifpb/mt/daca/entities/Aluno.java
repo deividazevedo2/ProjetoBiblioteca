@@ -1,5 +1,6 @@
 package br.edu.ifpb.mt.daca.entities;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -9,8 +10,10 @@ import javax.persistence.Table;
 @DiscriminatorValue("A")
 public class Aluno extends Pessoa {
 
+	@Column
 	private long matricula;
-
+	
+	@Column
 	private String curso;
 
 	// public Aluno() {

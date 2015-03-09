@@ -38,20 +38,20 @@ public class AlunoDAO extends DAO {
 	// return resultado;
 	// }
 	//
-	// public void delete(Pessoa pessoa) {
-	// EntityManager em = getEntityManager();
-	// EntityTransaction transaction = em.getTransaction();
-	// transaction.begin();
-	// try {
-	// pessoa = em.merge(pessoa);
-	// em.remove(pessoa);
-	// transaction.commit();
-	// } catch (PersistenceException pe) {
-	// pe.printStackTrace();
-	// transaction.rollback();
-	// } finally {
-	// em.close();
-	// }
-	// }
+	public void delete(Aluno aluno) {
+		EntityManager em = getEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		try {
+			aluno = em.merge(aluno);
+			em.remove(aluno);
+			transaction.commit();
+		} catch (PersistenceException pe) {
+			pe.printStackTrace();
+			transaction.rollback();
+		} finally {
+			em.close();
+		}
+	}
 
 }
