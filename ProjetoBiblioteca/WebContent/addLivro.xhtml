@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="title">
+	Biblioteca - Novo Livro
+	</ui:define>
+
+	<ui:define name="center">
+		<p:messages />
+		<p:fieldset legend="Novo Livro">
+			<h:panelGrid id="camposLivro" columns="2">
+				<h:outputText value="Título: " />
+				<p:inputText id="titulo" value="" style="width:250px" />
+
+				<h:outputText value="Descrição: " />
+				<p:inputText id="descricao" value="" style="width:250px" />
+
+				<h:outputText value="ISBN: " />
+				<p:inputText id="isbn" value="" style="width:250px" />
+
+				<h:outputText value="Editora: " />
+				<p:inputText id="editora" value="" style="width:250px" />
+			</h:panelGrid>
+
+			<br />
+			<p:commandButton value="Salvar" id="filtrarBotao"
+				icon="ui-icon-disk" />
+			<p:commandButton id="limparBotao" value="Limpar" update="camposLivro"
+				process="@this" icon="ui-icon-scissors">
+				<p:resetInput target="camposLivro" />
+			</p:commandButton>
+		</p:fieldset>
+	</ui:define>
+</ui:composition>
+</html>

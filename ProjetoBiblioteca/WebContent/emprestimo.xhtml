@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="title">
+	Biblioteca - Empréstimo/Devolução
+	</ui:define>
+
+	<ui:define name="center">
+		<p:messages />
+		<p:fieldset legend="Empréstimo/Devolução">
+			<h:panelGrid id="camposEmprestimo" columns="2">
+
+				<h:outputText value="Matrícula do aluno: " />
+				<p:inputMask id="matricula" value="" mask="9999.9.999.9999"
+					style="width:250px" />
+
+				<h:outputText value="ISBN do livro: " />
+				<p:inputText id="isbn" value="" style="width:250px" />
+			</h:panelGrid>
+
+			<br />
+			<p:commandButton value="Efetuar empréstimo" id="filtrarBotao"
+				icon="ui-icon-cart" />
+			<p:commandButton value="Efetuar devolução" id="filtrarBotao"
+				icon="ui-icon-arrowreturnthick-1-w" />
+			<p:commandButton id="limparBotao" value="Limpar"
+				update="camposEmprestimo" process="@this" icon="ui-icon-scissors">
+				<p:resetInput target="camposEmprestimo" />
+			</p:commandButton>
+		</p:fieldset>
+	</ui:define>
+</ui:composition>
+</html>

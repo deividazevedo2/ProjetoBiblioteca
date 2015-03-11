@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="title">
+	Biblioteca - Livros
+	</ui:define>
+
+	<ui:define name="center">
+		<p:messages />
+		<p:fieldset legend="Livros">
+			<h:form id="camposFiltro">
+				<h:outputText value="Título do livro: " />
+				<p:inputText id="nomeFiltro" value="" style="width:250px" />
+				<br />
+				<br />
+				<p:commandButton value="Filtrar" id="filtrarBotao"
+					update=":idTabela" icon="ui-icon-search" />
+				<p:commandButton id="limparBotao" value="Limpar"
+					update="camposFiltro" process="@this" icon="ui-icon-scissors">
+					<p:resetInput target="camposFiltro" />
+				</p:commandButton>
+			</h:form>
+			<br />
+			<p:dataTable id="idTabela" var="livro"
+				emptyMessage="Nenhum registro encontrado.">
+				<p:column headerText="ISBN">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="Título">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="Exemplares">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="Autores">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="Editar">
+					<p:link outcome="index.xhtml" value="Editar Livro">
+						<f:param name="livro" />
+					</p:link>
+				</p:column>
+
+				<p:column headerText="Deletar">
+					<p:link outcome="index.xhtml" value="Deletar Livro">
+						<f:param name="livro" />
+					</p:link>
+				</p:column>
+			</p:dataTable>
+			<br />
+			<p:button value="Novo Livro" outcome="addLivro.xhtml"
+				icon="ui-icon-plus" />
+		</p:fieldset>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+
+	<h:head>
+		<link rel="stylesheet" href="theme.css" type="text/css" />
+		<style type="text/css">
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+</style>
+		<title><ui:insert name="title">GUI Biblioteca</ui:insert></title>
+	</h:head>
+
+	<h:body>
+
+		<p:layout fullPage="true">
+			<p:layoutUnit id="top" position="north" size="50">
+
+				<p:menubar>
+					<p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
+
+					<p:menuitem value="Sobre" outcome="sobre.xhtml" icon="ui-icon-info" />
+
+					<p:menuitem value="Logout" outcome="index.xhtml"
+						icon="ui-icon-extlink" />
+				</p:menubar>
+
+			</p:layoutUnit>
+
+			<p:layoutUnit id="bottom" position="south" size="60">
+				<center>
+					Instituto Federal de Educação Ciência e Tecnologia da Paraíba -
+					Campus Monteiro<br />Análise e Desenvolvimento de Sistemas -
+					2012.2
+				</center>
+			</p:layoutUnit>
+
+			<p:layoutUnit id="left" position="west" size="300" resizable="false"
+				closable="false" collapsible="true" header="Menu" minSize="200">
+				<p:menu style="width: 280px">
+					<p:menuitem value="Alunos" url="alunos.xhtml" />
+					<p:menuitem value="Livros" url="livros.xhtml" />
+					<p:menuitem value="Empréstimo/Devolução" url="emprestimo.xhtml" />
+				</p:menu>
+			</p:layoutUnit>
+
+			<p:layoutUnit id="center" position="center">
+				<ui:insert name="center" />
+			</p:layoutUnit>
+
+		</p:layout>
+
+	</h:body>
+
+</f:view>
+</html>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="title">
+	Biblioteca - Novo Aluno
+	</ui:define>
+
+	<ui:define name="center">
+		<p:messages />
+		<p:fieldset legend="Novo Aluno">
+			<h:panelGrid id="camposAluno" columns="2">
+				<h:outputText value="Nome: " />
+				<p:inputText id="nome" value="" style="width:250px" />
+
+				<h:outputText value="Curso: " />
+				<p:inputText id="curso" value="" style="width:250px" />
+
+				<h:outputText value="CPF: " />
+				<p:inputMask id="cpf" value="" mask="999.999.999-99"
+					style="width:250px" />
+
+				<h:outputText value="Matrícula: " />
+				<p:inputMask id="matricula" value="" mask="9999.9.999.9999"
+					style="width:250px" />
+
+				<h:outputText value="Telefone: " />
+				<p:inputMask id="telefone" value="" mask="(99) 9999-9999"
+					style="width:250px" />
+
+				<h:outputText value="Endereço " />
+				<p:inputText id="endereco" value="" style="width:250px" />
+			</h:panelGrid>
+			<br />
+			<p:commandButton value="Salvar" id="filtrarBotao" icon="ui-icon-disk" />
+			<p:commandButton id="limparBotao" value="Limpar" update="camposAluno"
+				process="@this" icon="ui-icon-scissors">
+				<p:resetInput target="camposAluno" />
+			</p:commandButton>
+		</p:fieldset>
+	</ui:define>
+</ui:composition>
+</html>
