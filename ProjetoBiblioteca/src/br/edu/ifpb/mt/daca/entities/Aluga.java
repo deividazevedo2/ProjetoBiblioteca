@@ -1,5 +1,6 @@
 package br.edu.ifpb.mt.daca.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,54 +12,59 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name="Aluga")
-@Table (name="TB_Aluga")
-public class Aluga {
-	
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+@Entity(name = "Aluga")
+@Table(name = "TB_Aluga")
+public class Aluga implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1816379125186122276L;
+
 	@Id
 	@Column
-	private int id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 	@Column
-	private Aluno aluno;
+	private Long matriculaAluno;
+
 	@Column
-	private Livro livro;
-	
+	private Long isbnLivro;
+
+	@Column
 	@Temporal(TemporalType.DATE)
-	@Column
 	private Date dataEntrega;
-	
-	@Temporal(TemporalType.DATE)
+
 	@Column
+	@Temporal(TemporalType.DATE)
 	private Date dataDevolucao;
-	
+
 	public Aluga() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Aluno getAluno() {
-		return aluno;
+	public Long getMatriculaAluno() {
+		return matriculaAluno;
 	}
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
+	public void setMatriculaAluno(Long matriculaAluno) {
+		this.matriculaAluno = matriculaAluno;
 	}
 
-	public Livro getLivro() {
-		return livro;
+	public Long getIsbnLivro() {
+		return isbnLivro;
 	}
 
-	public void setLivro(Livro livro) {
-		this.livro = livro;
+	public void setIsbnLivro(Long isbnLivro) {
+		this.isbnLivro = isbnLivro;
 	}
 
 	public Date getDataEntrega() {
@@ -81,13 +87,15 @@ public class Aluga {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
 		result = prime * result
 				+ ((dataDevolucao == null) ? 0 : dataDevolucao.hashCode());
 		result = prime * result
 				+ ((dataEntrega == null) ? 0 : dataEntrega.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((livro == null) ? 0 : livro.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((isbnLivro == null) ? 0 : isbnLivro.hashCode());
+		result = prime * result
+				+ ((matriculaAluno == null) ? 0 : matriculaAluno.hashCode());
 		return result;
 	}
 
@@ -100,11 +108,6 @@ public class Aluga {
 		if (getClass() != obj.getClass())
 			return false;
 		Aluga other = (Aluga) obj;
-		if (aluno == null) {
-			if (other.aluno != null)
-				return false;
-		} else if (!aluno.equals(other.aluno))
-			return false;
 		if (dataDevolucao == null) {
 			if (other.dataDevolucao != null)
 				return false;
@@ -115,16 +118,22 @@ public class Aluga {
 				return false;
 		} else if (!dataEntrega.equals(other.dataEntrega))
 			return false;
-		if (id != other.id)
-			return false;
-		if (livro == null) {
-			if (other.livro != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!livro.equals(other.livro))
+		} else if (!id.equals(other.id))
+			return false;
+		if (isbnLivro == null) {
+			if (other.isbnLivro != null)
+				return false;
+		} else if (!isbnLivro.equals(other.isbnLivro))
+			return false;
+		if (matriculaAluno == null) {
+			if (other.matriculaAluno != null)
+				return false;
+		} else if (!matriculaAluno.equals(other.matriculaAluno))
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

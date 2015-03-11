@@ -11,7 +11,7 @@ import br.edu.ifpb.mt.daca.entities.Pessoa;
 
 public class PessoaDAO extends DAO {
 
-	public void save(Pessoa pessoa) {
+	public void salvar(Pessoa pessoa) {
 		EntityManager em = getEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
@@ -41,7 +41,7 @@ public class PessoaDAO extends DAO {
 		return resultado;
 	}
 
-	public void delete(Pessoa pessoa) {
+	public void deletar(Pessoa pessoa) {
 		EntityManager em = getEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();

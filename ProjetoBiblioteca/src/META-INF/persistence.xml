@@ -11,15 +11,18 @@
 		<class>br.edu.ifpb.mt.daca.entities.Autor</class>
 		<class>br.edu.ifpb.mt.daca.entities.Livro</class>
 		<class>br.edu.ifpb.mt.daca.entities.Pessoa</class>
+		<class>br.edu.ifpb.mt.daca.entities.Aluga</class>
 
 		<properties>
-			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/bibliotecaDACA"/>
-			<property name="hibernate.connection.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-			<property name="hibernate.connection.username" value="indy"/>
-			<property name="hibernate.connection.password" value="indy"/>
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
-			<property name="hibernate.show.sql" value="true"/>
+			<property name="hibernate.connection.url"
+				value="jdbc:mysql://localhost:3306/projetobiblioteca" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="boisemsede2" />
+			<!-- <property name="hibernate.default_schema" value="DACA" /> -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
+
 	</persistence-unit>
 </persistence>

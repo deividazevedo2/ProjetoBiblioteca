@@ -10,7 +10,6 @@ public class Autor {
 	private String dataNascimento;
 
 	public Autor() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getNome() {

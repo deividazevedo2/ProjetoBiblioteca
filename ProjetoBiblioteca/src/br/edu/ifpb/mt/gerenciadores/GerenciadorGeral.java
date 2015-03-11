@@ -11,27 +11,27 @@ public class GerenciadorGeral implements Fachada {
 
 	AlunoDAO alunoDao = new AlunoDAO();
 	AlugaDAO alugaDAO = new AlugaDAO();
-	
+
 	@Override
 	public void AddAluno(Aluno p) {
-		alunoDao.save(p);
+		alunoDao.salvar(p);
 
 	}
-	
+
 	@Override
 	public void ExcluirAluno(Aluno aluno) {
-		alunoDao.delete(aluno);
-		
+		alunoDao.deletar(aluno);
+
 	}
-	
+
 	@Override
 	public void EditarAluno(Aluno p) {
-		
+
 	}
-	
+
 	@Override
 	public void BuscarAluno(Aluno p) {
-		
+
 	}
 
 	@Override
@@ -41,13 +41,11 @@ public class GerenciadorGeral implements Fachada {
 
 	@Override
 	public void ExcluirLivro(Livro l) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void EditarLivro(Livro l) {
-		// TODO Auto-generated method stub
 
 	}
 

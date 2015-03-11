@@ -1,5 +1,7 @@
 package br.edu.ifpb.mt.daca.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -18,11 +20,16 @@ import br.edu.ifpb.mt.daca.embedded.Endereco;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "DISC", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("P")
-public class Pessoa {
+public class Pessoa implements Serializable {
 
-	@Column(nullable = false)
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7256439569063476757L;
+
 	@Id
-	private long cpf;
+	@Column(nullable = false)
+	private String cpf;
 
 	@Column(nullable = false)
 	private String nome;
@@ -33,14 +40,13 @@ public class Pessoa {
 	private Endereco endereco;
 
 	public Pessoa() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -72,7 +78,7 @@ public class Pessoa {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (cpf ^ (cpf >>> 32));
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result
 				+ ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
@@ -90,7 +96,10 @@ public class Pessoa {
 		if (getClass() != obj.getClass())
 			return false;
 		Pessoa other = (Pessoa) obj;
-		if (cpf != other.cpf)
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
 			return false;
 		if (endereco == null) {
 			if (other.endereco != null)

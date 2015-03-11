@@ -1,8 +1,13 @@
 package br.edu.ifpb.mt.daca.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity(name = "Aluno_JS")
@@ -10,21 +15,26 @@ import javax.persistence.Table;
 @DiscriminatorValue("A")
 public class Aluno extends Pessoa {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7275464108876664133L;
+
 	@Column
-	private long matricula;
-	
+	private Long matricula;
+
 	@Column
 	private String curso;
 
-	// public Aluno() {
-	// // TODO Auto-generated constructor stub
-	// }
+	@ManyToMany
+	@JoinTable(name = "Livros_Lidos", joinColumns = @JoinColumn(name = "Matricula"), inverseJoinColumns = @JoinColumn(name = "ISBN_Livro"))
+	private List<Livro> livros;
 
-	public long getMatricula() {
+	public Long getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(long matricula) {
+	public void setMatricula(Long matricula) {
 		this.matricula = matricula;
 	}
 
@@ -34,6 +44,14 @@ public class Aluno extends Pessoa {
 
 	public void setCurso(String curso) {
 		this.curso = curso;
+	}
+
+	public List<Livro> getLivros() {
+		return livros;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
 	}
 
 	@Override

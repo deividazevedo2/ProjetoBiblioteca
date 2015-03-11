@@ -1,27 +1,30 @@
 package br.edu.ifpb.mt.daca.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@Embeddable
 @Table(name = "TB_Livro")
-public class Livro {
+public class Livro implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1633782816629095660L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
+	@Column(name = "ISBN")
+	private Long isbn;
 
 	@Column(name = "Titulo")
 	private String titulo;
-
-	@Column(name = "ISBN")
-	private String isbn;
 
 	@Column(name = "Descricao")
 	private String descricao;
@@ -29,22 +32,14 @@ public class Livro {
 	@Column(name = "Editora")
 	private String editora;
 
+	@Column(name = "Exemplares")
+	private Integer exemplares;
+
 	@Column(name = "Autores")
 	private ArrayList<Autor> autores;
 
-	// @Column(name = "Sessao")
-	// private String sessao;
-
 	public Livro() {
 
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getTitulo() {
@@ -55,11 +50,11 @@ public class Livro {
 		this.titulo = titulo;
 	}
 
-	public String getIsbn() {
+	public Long getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(String isbn) {
+	public void setIsbn(Long isbn) {
 		this.isbn = isbn;
 	}
 
@@ -87,6 +82,21 @@ public class Livro {
 		this.autores = autores;
 	}
 
+	public Integer getExemplares() {
+		return exemplares;
+	}
+
+	public void setExemplares(Integer exemplares) {
+		this.exemplares = exemplares;
+	}
+
+	@Override
+	public String toString() {
+		return "Livro [isbn=" + isbn + ", titulo=" + titulo + ", descricao="
+				+ descricao + ", editora=" + editora + ", exemplares="
+				+ exemplares + ", autores=" + autores + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -95,8 +105,8 @@ public class Livro {
 		result = prime * result
 				+ ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((editora == null) ? 0 : editora.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
+		result = prime * result + exemplares;
+		result = prime * result + (int) (isbn ^ (isbn >>> 32));
 		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		return result;
 	}
@@ -125,15 +135,9 @@ public class Livro {
 				return false;
 		} else if (!editora.equals(other.editora))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (exemplares != other.exemplares)
 			return false;
-		if (isbn == null) {
-			if (other.isbn != null)
-				return false;
-		} else if (!isbn.equals(other.isbn))
+		if (isbn != other.isbn)
 			return false;
 		if (titulo == null) {
 			if (other.titulo != null)
@@ -141,13 +145,6 @@ public class Livro {
 		} else if (!titulo.equals(other.titulo))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Livro [id=" + id + ", titulo=" + titulo + ", isbn=" + isbn
-				+ ", descricao=" + descricao + ", editora=" + editora
-				+ ", autores=" + autores + "]";
 	}
 
 }
