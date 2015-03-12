@@ -19,42 +19,44 @@
 		<p:fieldset legend="Alunos">
 			<h:form id="camposFiltro">
 				<h:outputText value="Nome do aluno: " />
-				<p:inputText id="nomeFiltro" value="" style="width:250px" />
+				<p:inputText id="nomeFiltro" value="#{indexBean.nomeAluno}"
+					style="width:250px" />
 				<br />
 				<br />
 				<p:commandButton value="Filtrar" id="filtrarBotao"
-					update=":idTabela" icon="ui-icon-search" />
+					update=":idTabela" action="#{indexBean.filtrar}" icon="ui-icon-search" />
 				<p:commandButton id="limparBotao" value="Limpar"
 					update="camposFiltro" process="@this" icon="ui-icon-scissors">
 					<p:resetInput target="camposFiltro" />
 				</p:commandButton>
 			</h:form>
 			<br />
-			<p:dataTable id="idTabela" var="aluno"
+			<p:dataTable id="idTabela" var="aluno" value="#{indexBean.alunos}"
 				emptyMessage="Nenhum registro encontrado.">
+
 				<p:column headerText="Matrícula">
-					<h:outputText />
+					<h:outputText value="#{aluno.matricula}" />
 				</p:column>
 
 				<p:column headerText="Nome">
-					<h:outputText />
+					<h:outputText value="#{aluno.nome}" />
 				</p:column>
 
 				<p:column headerText="Curso">
-					<h:outputText />
+					<h:outputText value="#{aluno.curso}" />
 				</p:column>
 
 				<p:column headerText="CPF">
-					<h:outputText />
+					<h:outputText value="#{aluno.cpf}" />
 				</p:column>
 
 				<p:column headerText="Livros">
-					<h:outputText />
+					<h:outputText value="#{aluno.livros}" />
 				</p:column>
 
 				<p:column headerText="Editar">
-					<p:link outcome="index.xhtml" value="Editar Aluno">
-						<f:param name="aluno" />
+					<p:link outcome="addAluno.xhtml" value="Editar Aluno">
+						<f:param name="aluno" value="#{aluno.id}" />
 					</p:link>
 				</p:column>
 
