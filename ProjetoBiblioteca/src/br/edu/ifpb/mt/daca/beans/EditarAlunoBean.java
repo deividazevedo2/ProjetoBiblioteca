@@ -40,7 +40,7 @@ public class EditarAlunoBean extends ClasseAbstrata {
 	public String salvarAluno() {
 		conversation.end();
 		try {
-			if (alunoDao.buscar(aluno.getMatricula()) != null) {
+			if (aluno.getMatricula() == null) {
 				alunoService.editarAluno(aluno);
 				reportarMensagemDeSucesso("Aluno " + aluno.getNome()
 						+ " atualizado com sucesso!");

@@ -31,7 +31,7 @@ public class AlunoDAO extends DAO {
 		EntityManager em = getEntityManager();
 		Aluno resultado = null;
 		try {
-			resultado = em.find(Aluno.class, Long.valueOf(matriculaAluno));
+			resultado = em.find(Aluno.class, matriculaAluno);
 		} catch (PersistenceException pe) {
 			throw new BibliotecaException(
 					"Ocorreu algum problema ao tentar recuperar o aluno.", pe);
