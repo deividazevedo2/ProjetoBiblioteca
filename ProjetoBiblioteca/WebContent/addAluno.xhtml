@@ -19,11 +19,14 @@
 	</ui:define>
 
 	<ui:define name="center">
-		<p:messages autoUpdate="true" />
+		<p:growl id="messages" autoUpdate="true" showDetail="true"
+			showSummary="true" />
 
 		<h:form>
 			<p:fieldset legend="Novo Aluno">
-				<h:panelGrid id="camposAluno" columns="2">
+				<h:panelGrid id="camposAluno" columns="2"
+					value="#{editarAlunoBean.alunos}"
+					emptyMessage="Nenhum registro encontrado.">
 					<h:outputText value="Nome: " />
 					<p:inputText id="nome" value="#{editarAlunoBean.aluno.nome}"
 						style="width:250px" />
@@ -45,15 +48,38 @@
 						value="#{editarAlunoBean.aluno.telefone}" mask="(99) 9999-9999"
 						style="width:250px" />
 
-					<h:outputText value="Endereço " />
-					<p:inputText id="endereco"
-						value="#{editarAlunoBean.aluno.endereco}" style="width:250px" />
+					<!--	<h:outputText value="Rua " />
+					<p:inputText id="rua" value="#{editarAlunoBean.aluno.endereco.rua}"
+						style="width:250px" />
+
+					<h:outputText value="Numero " />
+					<p:inputText id="numero"
+						value="#{editarAlunoBean.aluno.endereco.numero}"
+						style="width:250px" />
+
+					<h:outputText value="Bairro " />
+					<p:inputText id="bairro"
+						value="#{editarAlunoBean.aluno.endereco.bairro}"
+						style="width:250px" />
+
+					<h:outputText value="Cidade " />
+					<p:inputText id="cidade"
+						value="#{editarAlunoBean.aluno.endereco.cidade}"
+						style="width:250px" />
+
+					<h:outputText value="CEP " />
+					<p:inputText id="cep" value="#{editarAlunoBean.aluno.endereco.cep}"
+						style="width:250px" />
+
+					<h:outputText value="UF " />
+					<p:inputText id="uf" value="#{editarAlunoBean.aluno.endereco.uf}"
+						style="width:250px" />  -->
 					<br />
 					<br />
 
 					<f:facet name="footer">
 						<p:commandButton action="#{editarAlunoBean.salvarAluno}"
-							value="Salvar" icon="ui-icon-disk" ajax="false" />
+							value="Salvar" icon="ui-icon-disk" />
 
 						<p:commandButton id="limparBotao" value="Limpar"
 							update="camposAluno" process="@this" icon="ui-icon-scissors">

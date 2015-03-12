@@ -14,7 +14,8 @@
 	</ui:define>
 
 	<ui:define name="center">
-		<p:messages />
+		<p:growl id="messages" autoUpdate="true" showDetail="true"
+			showSummary="true" />
 		<p:fieldset legend="Alunos">
 			<h:form id="camposFiltro">
 				<h:outputText value="Nome do aluno: " />
