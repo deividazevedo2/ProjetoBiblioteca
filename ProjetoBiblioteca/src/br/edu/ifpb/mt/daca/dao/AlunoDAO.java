@@ -26,7 +26,7 @@ public class AlunoDAO extends DAO {
 		}
 	}
 
-	public Aluno buscar(Long matriculaAluno) throws BibliotecaException {
+	public Aluno buscar(Integer matriculaAluno) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		Aluno resultado = null;
 		try {

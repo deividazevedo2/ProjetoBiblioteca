@@ -51,7 +51,7 @@ public class AlunoService implements Serializable {
 
 	}
 
-	public Aluno getByMatricula(Long matricula) throws BibliotecaException {
+	public Aluno getByMatricula(Integer matricula) throws BibliotecaException {
 		try {
 			return this.alunoDao.buscar(matricula);
 		} catch (PersistenceException e) {

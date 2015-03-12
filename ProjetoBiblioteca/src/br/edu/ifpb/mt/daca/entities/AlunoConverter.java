@@ -25,7 +25,7 @@ public class AlunoConverter implements Converter {
 		if (valor == null || valor.trim().isEmpty()) {
 			return null;
 		}
-		Long matricula = Long.valueOf(valor + "");
+		Integer matricula = Integer.valueOf(valor);
 
 		try {
 			return alunos.buscar(matricula);

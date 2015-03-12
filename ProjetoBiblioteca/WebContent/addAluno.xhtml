@@ -5,11 +5,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
 
 <ui:composition template="/templates/template.xhtml">
 
 	<f:metadata>
+		<o:viewParam name="aluno" value="#{editarAlunoBean.aluno}"
+			converter="#{alunoConverter}" />
 		<f:event listener="#{editarAlunoBean.preRenderView()}"
 			type="preRenderView" />
 	</f:metadata>
@@ -27,6 +31,12 @@
 				<h:panelGrid id="camposAluno" columns="2"
 					value="#{editarAlunoBean.alunos}"
 					emptyMessage="Nenhum registro encontrado.">
+
+					<p:outputLabel value="Id: "
+						rendered="#{!empty editarAlunoBean.aluno.id}" />
+					<p:outputLabel value="#{editarAlunoBean.aluno.id}"
+						rendered="#{!empty editarAlunoBean.aluno.id}" />
+
 					<h:outputText value="Nome: " />
 					<p:inputText id="nome" value="#{editarAlunoBean.aluno.nome}"
 						style="width:250px" />
