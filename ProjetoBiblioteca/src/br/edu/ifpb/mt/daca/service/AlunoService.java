@@ -9,7 +9,6 @@ import javax.persistence.PersistenceException;
 import br.edu.ifpb.mt.daca.dao.AlunoDAO;
 import br.edu.ifpb.mt.daca.entities.Aluno;
 import br.edu.ifpb.mt.daca.entities.Livro;
-import br.edu.ifpb.mt.daca.entities.Pessoa;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 import br.edu.ifpb.mt.daca.util.TransacionalCdi;
 
@@ -61,9 +60,10 @@ public class AlunoService implements Serializable {
 
 	}
 
-	public List<Pessoa> getAll() throws BibliotecaException {
+	public List<Aluno> getAll(Long matriculaAluno, String nomeAluno)
+			throws BibliotecaException {
 		try {
-			return this.alunoDao.getAll();
+			return this.alunoDao.getAll(matriculaAluno, nomeAluno);
 		} catch (PersistenceException e) {
 			throw new BibliotecaException(e.getMessage(), e);
 		}

@@ -11,6 +11,11 @@ import br.edu.ifpb.mt.daca.entities.Livro;
 
 public class LivroDAO extends DAO {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6387640448034553073L;
+
 	public void salvar(Livro livro) {
 		EntityManager em = getEntityManager();
 		EntityTransaction transaction = em.getTransaction();

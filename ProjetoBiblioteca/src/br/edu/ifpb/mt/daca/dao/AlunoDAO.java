@@ -7,7 +7,6 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import br.edu.ifpb.mt.daca.entities.Aluno;
-import br.edu.ifpb.mt.daca.entities.Pessoa;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 
 public class AlunoDAO extends DAO {
@@ -52,16 +51,37 @@ public class AlunoDAO extends DAO {
 		return resultado;
 	}
 
-	public List<Pessoa> getAll() throws BibliotecaException {
+	public List<Aluno> getAll(Long matriculaAluno, String nomeAluno)
+			throws BibliotecaException {
 		EntityManager em = getEntityManager();
-		List<Pessoa> resultado = null;
+		List<Aluno> resultado = null;
+
+		String jpql = "select a from Aluno_JS a where 1=1";
+
+		if (matriculaAluno != null && matriculaAluno.equals("")) {
+			jpql += " and a.matricula like :matricula";
+		}
+
+		if (nomeAluno != null && !nomeAluno.isEmpty()) {
+			jpql += " and a.nome like :nome";
+		}
+
+		TypedQuery<Aluno> query = em.createQuery(jpql, Aluno.class);
+
+		if (matriculaAluno != null && matriculaAluno.equals("")) {
+			query.setParameter("matricula", matriculaAluno);
+		}
+
+		if (nomeAluno != null && !nomeAluno.isEmpty()) {
+			query.setParameter("nome", "%" + nomeAluno + "%");
+		}
+
 		try {
-			TypedQuery<Pessoa> query = em.createQuery(
-					"SELECT p FROM Pessoa_JS p", Pessoa.class);
 			resultado = query.getResultList();
 		} catch (PersistenceException pe) {
 			throw new BibliotecaException(
-					"Ocorreu algum problema ao tentar recuperar os alunos.", pe);
+					"Ocorreu algum problema ao tentar recuperar os alunos com base no nome e/ou matricula.",
+					pe);
 		}
 		return resultado;
 	}
@@ -72,7 +92,7 @@ public class AlunoDAO extends DAO {
 			aluno = em.merge(aluno);
 			em.remove(aluno);
 		} catch (PersistenceException pe) {
-			throw new BibliotecaException("Erro ao deletar o aluno", pe);
+			throw new BibliotecaException("Erro ao deletar o aluno.", pe);
 		}
 	}
 

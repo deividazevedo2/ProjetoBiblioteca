@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.mt.daca.entities.Aluno;
+import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 import br.edu.ifpb.mt.daca.service.AlunoService;
 
 @Named
@@ -25,10 +26,11 @@ public class IndexBean extends ClasseAbstrata {
 	private AlunoService alunoService;
 
 	private Long matriculaAluno;
+	private String nomeAluno;
 
 	@PostConstruct
 	public void init() {
-//		filtrar();
+		filtrar();
 	}
 
 	public List<Aluno> getAlunos() {
@@ -43,12 +45,25 @@ public class IndexBean extends ClasseAbstrata {
 		this.matriculaAluno = matriculaAluno;
 	}
 
-//	public void filtrar() {
-//		try {
-//			alunos = alunoService.getAllbuscar(matriculaAluno);
-//		} catch (DacaServiceException e) {
-//			reportarMensagemDeErro(e.getMessage());
-//		}
-//	}
+	public String getNomeAluno() {
+		return nomeAluno;
+	}
+
+	public void setNomeAluno(String nomeAluno) {
+		this.nomeAluno = nomeAluno;
+	}
+
+	public void filtrar() {
+		try {
+			alunos = alunoService.getAll(matriculaAluno, nomeAluno);
+		} catch (BibliotecaException e) {
+			reportarMensagemDeErro(e.getMessage());
+		}
+	}
+
+	public void limpar() {
+		nomeAluno = null;
+		matriculaAluno = null;
+	}
 
 }

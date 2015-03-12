@@ -35,7 +35,7 @@ public class EditarAlunoBean extends ClasseAbstrata {
 	public String salvarAluno() {
 		conversation.end();
 		try {
-			if (aluno.getMatricula() == null) {
+			if (aluno.getId() != null) {
 				alunoService.editarAluno(aluno);
 				reportarMensagemDeSucesso("Aluno " + aluno.getNome()
 						+ " atualizado com sucesso!");

@@ -8,6 +8,8 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -28,6 +30,10 @@ public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 7256439569063476757L;
 
 	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 	@Column(nullable = false)
 	private String cpf;
 
@@ -40,6 +46,10 @@ public class Pessoa implements Serializable {
 	private Endereco endereco;
 
 	public Pessoa() {
+	}
+
+	public Integer getId() {
+		return id;
 	}
 
 	public String getCpf() {
