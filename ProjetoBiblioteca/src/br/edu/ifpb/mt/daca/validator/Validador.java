@@ -6,7 +6,7 @@ import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 
 public class Validador {
 
-	AlunoDAO alunoDao;
+	private AlunoDAO alunoDao;
 
 	public boolean validarAluno(Aluno aluno) throws BibliotecaException {
 		if (aluno.getCpf() == null || aluno.getCurso() == null
@@ -14,9 +14,9 @@ public class Validador {
 				|| aluno.getTelefone() == null) {
 			return false;
 		}
-//		if (validarMatricula(aluno.getMatricula())) {
-//			return false;
-//		}
+		// if (validarMatricula(aluno.getMatricula())) {
+		// return false;
+		// }
 		return true;
 	}
 
