@@ -11,7 +11,7 @@ import br.edu.ifpb.mt.daca.embedded.Endereco;
 import br.edu.ifpb.mt.daca.entities.Aluga;
 import br.edu.ifpb.mt.daca.entities.Aluno;
 import br.edu.ifpb.mt.daca.entities.Livro;
-import br.edu.ifpb.mt.gerenciadores.GerenciadorEmprestimo;
+import br.edu.ifpb.mt.service.GerenciadorEmprestimo;
 
 public class MainSalvarAluno {
 

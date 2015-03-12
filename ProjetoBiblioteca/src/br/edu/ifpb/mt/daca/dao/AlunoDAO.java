@@ -9,10 +9,11 @@ import javax.persistence.TypedQuery;
 
 import br.edu.ifpb.mt.daca.entities.Aluno;
 import br.edu.ifpb.mt.daca.entities.Pessoa;
+import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 
 public class AlunoDAO extends DAO {
 
-	public void salvar(Aluno aluno) {
+	public void salvar(Aluno aluno) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
@@ -27,7 +28,7 @@ public class AlunoDAO extends DAO {
 		}
 	}
 
-	public Aluno buscar(Long matriculaAluno) {
+	public Aluno buscar(Long matriculaAluno) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		Aluno resultado = null;
 		try {

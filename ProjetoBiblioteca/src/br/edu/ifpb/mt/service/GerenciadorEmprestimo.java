@@ -1,4 +1,4 @@
-package br.edu.ifpb.mt.gerenciadores;
+package br.edu.ifpb.mt.service;
 
 import java.util.ArrayList;
 import java.util.List;

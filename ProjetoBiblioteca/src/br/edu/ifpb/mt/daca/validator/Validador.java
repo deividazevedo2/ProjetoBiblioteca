@@ -17,6 +17,21 @@ public class Validador {
 			return false;
 		}
 		return true;
-
 	}
+
+	public boolean validarCampo(Long valor) {
+		if (valor == null || valor.equals("")) {
+			return false;
+
+		}
+		return true;
+	}
+
+	public boolean validarMatricula(Long matricula) {
+		if (alunoDao.buscarAlunoPelaMatricula(matricula) != null)
+			return false;
+
+		return true;
+	}
+
 }
