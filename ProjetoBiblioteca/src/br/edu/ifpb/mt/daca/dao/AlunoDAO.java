@@ -13,6 +13,11 @@ import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 
 public class AlunoDAO extends DAO {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2082479246855523828L;
+
 	public void salvar(Aluno aluno) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		try {
@@ -79,7 +84,8 @@ public class AlunoDAO extends DAO {
 		}
 	}
 
-	public List<Aluno> buscarAlunoPeloNome(String nomeAluno) throws BibliotecaException{
+	public List<Aluno> buscarAlunoPeloNome(String nomeAluno)
+			throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		List<Aluno> resultado = null;
 		if (nomeAluno == null) {
@@ -93,11 +99,12 @@ public class AlunoDAO extends DAO {
 			resultado = query.getResultList();
 		} catch (PersistenceException pe) {
 			throw new BibliotecaException("Erro ao recuperar aluno.", pe);
-		} 
+		}
 		return resultado;
 	}
 
-	public Aluno buscarAlunoPelaMatricula(Long matriculaAluno) throws BibliotecaException{
+	public Aluno buscarAlunoPelaMatricula(Long matriculaAluno)
+			throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		Aluno resultado = null;
 		if (matriculaAluno == null) {
@@ -111,8 +118,9 @@ public class AlunoDAO extends DAO {
 			query.setParameter("matricula", matriculaAluno);
 			resultado = query.getSingleResult();
 		} catch (PersistenceException pe) {
-			throw new BibliotecaException("Erro ao recuperar aluno por matricula.", pe);
-		} 
+			throw new BibliotecaException(
+					"Erro ao recuperar aluno por matricula.", pe);
+		}
 		return resultado;
 	}
 

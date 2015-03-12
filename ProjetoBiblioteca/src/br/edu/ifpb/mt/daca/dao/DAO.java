@@ -1,22 +1,21 @@
 package br.edu.ifpb.mt.daca.dao;
 
+import java.io.Serializable;
+
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
-public abstract class DAO {
+public abstract class DAO implements Serializable {
 
-	static EntityManagerFactory emf;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -315740615092329279L;
 
-	static {
-		emf = Persistence.createEntityManagerFactory("daca");
-	}
+	@Inject
+	private EntityManager entityManager;
 
 	protected EntityManager getEntityManager() {
-		return emf.createEntityManager();
-	}
-
-	public void close() {
-		emf.close();
+		return entityManager;
 	}
 }

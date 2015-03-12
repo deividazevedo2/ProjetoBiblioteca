@@ -1,26 +1,18 @@
 package br.edu.ifpb.mt.daca.main;
 
-import br.edu.ifpb.mt.daca.dao.AlugaDAO;
-import br.edu.ifpb.mt.daca.dao.LivroDAO;
 import br.edu.ifpb.mt.daca.embedded.Endereco;
-import br.edu.ifpb.mt.daca.entities.Aluga;
 import br.edu.ifpb.mt.daca.entities.Aluno;
-import br.edu.ifpb.mt.daca.entities.Livro;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
-import br.edu.ifpb.mt.service.AlunoService;
-import br.edu.ifpb.mt.service.GerenciadorEmprestimo;
+import br.edu.ifpb.mt.daca.service.AlunoService;
 
 public class MainSalvarAluno {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		AlunoService dao = new AlunoService();
-//		LivroDAO livroDao = new LivroDAO();
-//		AlugaDAO alugaDao = new AlugaDAO();
-//		GerenciadorEmprestimo ge = new GerenciadorEmprestimo();
-//		Aluga aluga = new Aluga();
+		// LivroDAO livroDao = new LivroDAO();
+		// AlugaDAO alugaDao = new AlugaDAO();
+		// GerenciadorEmprestimo ge = new GerenciadorEmprestimo();
+		// Aluga aluga = new Aluga();
 		//
 		// SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
 		// String dateInString = "7-Jun-2013";
@@ -42,16 +34,16 @@ public class MainSalvarAluno {
 		// e.printStackTrace();
 		// }
 
-//		Livro livro = new Livro();
-//		livro.setIsbn(Long.valueOf(12345));
-//		livro.setTitulo("Madagascar");
-//		livro.setEditora("Abril");
-//		livro.setDescricao("Entretenimento");
-//		livro.setExemplares(5);
-//		livroDao.salvar(livro);
-//		System.out.println(livroDao.buscar(Long.valueOf(12345)));
-//		// livroDao.deletar(livro);
-//		System.out.println(livroDao.buscarLivroPeloNome("Madagascar"));
+		// Livro livro = new Livro();
+		// livro.setIsbn(Long.valueOf(12345));
+		// livro.setTitulo("Madagascar");
+		// livro.setEditora("Abril");
+		// livro.setDescricao("Entretenimento");
+		// livro.setExemplares(5);
+		// livroDao.salvar(livro);
+		// System.out.println(livroDao.buscar(Long.valueOf(12345)));
+		// // livroDao.deletar(livro);
+		// System.out.println(livroDao.buscarLivroPeloNome("Madagascar"));
 
 		try {
 			Aluno aluno = new Aluno();
@@ -72,7 +64,7 @@ public class MainSalvarAluno {
 
 			System.out.println(aluno.getNome());
 
-			dao.AddAluno(aluno);
+			dao.addAluno(aluno);
 
 			System.out.println(aluno);
 		} catch (BibliotecaException e) {

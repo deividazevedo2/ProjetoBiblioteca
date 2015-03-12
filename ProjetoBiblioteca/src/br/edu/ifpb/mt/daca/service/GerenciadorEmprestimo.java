@@ -1,4 +1,4 @@
-package br.edu.ifpb.mt.service;
+package br.edu.ifpb.mt.daca.service;
 
 import java.util.ArrayList;
 import java.util.List;

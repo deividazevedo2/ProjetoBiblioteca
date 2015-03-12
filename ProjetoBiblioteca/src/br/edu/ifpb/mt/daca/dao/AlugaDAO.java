@@ -6,7 +6,7 @@ import javax.persistence.PersistenceException;
 
 import br.edu.ifpb.mt.daca.entities.Aluga;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
-import br.edu.ifpb.mt.service.GerenciadorEmprestimo;
+import br.edu.ifpb.mt.daca.service.GerenciadorEmprestimo;
 
 public class AlugaDAO extends DAO {
 
