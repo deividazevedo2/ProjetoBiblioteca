@@ -36,7 +36,7 @@ public class DeletarAlunoBean extends ClasseAbstrata {
 		}
 	}
 
-	public String delete() {
+	public String deletar() {
 		try {
 			conversation.end();
 			alunoService.excluirAluno(aluno);

@@ -3,7 +3,6 @@ package br.edu.ifpb.mt.daca.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
@@ -32,34 +31,28 @@ public class AlunoDAO extends DAO {
 		EntityManager em = getEntityManager();
 		Aluno resultado = null;
 		try {
-			resultado = em.find(Aluno.class, matriculaAluno);
+			resultado = em.find(Aluno.class, Long.valueOf(matriculaAluno));
 		} catch (PersistenceException pe) {
-			pe.printStackTrace();
-		} finally {
-			em.close();
+			throw new BibliotecaException(
+					"Ocorreu algum problema ao tentar recuperar o aluno.", pe);
 		}
 
 		return resultado;
 	}
 
-	public Aluno alterar(Aluno aluno) {
+	public Aluno alterar(Aluno aluno) throws BibliotecaException {
 		EntityManager em = getEntityManager();
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
 		Aluno resultado = aluno;
 		try {
 			resultado = em.merge(aluno);
-			transaction.commit();
 		} catch (PersistenceException pe) {
-			pe.printStackTrace();
-			transaction.rollback();
-		} finally {
-			em.close();
+			throw new BibliotecaException(
+					"Ocorreu algum problema ao tentar atualizar o aluno.", pe);
 		}
 		return resultado;
 	}
 
-	public List<Pessoa> getAll() {
+	public List<Pessoa> getAll() throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		List<Pessoa> resultado = null;
 		try {
@@ -67,9 +60,8 @@ public class AlunoDAO extends DAO {
 					"SELECT p FROM Pessoa_JS p", Pessoa.class);
 			resultado = query.getResultList();
 		} catch (PersistenceException pe) {
-			pe.printStackTrace();
-		} finally {
-			em.close();
+			throw new BibliotecaException(
+					"Ocorreu algum problema ao tentar recuperar os alunos.", pe);
 		}
 		return resultado;
 	}

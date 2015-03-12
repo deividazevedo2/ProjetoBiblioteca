@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 
 import br.edu.ifpb.mt.daca.dao.AlunoDAO;
 import br.edu.ifpb.mt.daca.entities.Aluno;
 import br.edu.ifpb.mt.daca.entities.Livro;
+import br.edu.ifpb.mt.daca.entities.Pessoa;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 import br.edu.ifpb.mt.daca.util.TransacionalCdi;
-import br.edu.ifpb.mt.daca.validator.Validador;
 
 public class AlunoService implements Serializable {
 
@@ -32,6 +33,16 @@ public class AlunoService implements Serializable {
 	}
 
 	@TransacionalCdi
+	public Aluno editarAluno(Aluno aluno) throws BibliotecaException {
+		try {
+			return this.alunoDao.alterar(aluno);
+		} catch (BibliotecaException e) {
+			throw new BibliotecaException(e.getMessage());
+		}
+
+	}
+
+	@TransacionalCdi
 	public void excluirAluno(Aluno aluno) throws BibliotecaException {
 		try {
 			this.alunoDao.deletar(aluno);
@@ -41,23 +52,22 @@ public class AlunoService implements Serializable {
 
 	}
 
-	@TransacionalCdi
-	public void editarAluno(Aluno aluno) throws BibliotecaException {
-		// try {
-		this.alunoDao.alterar(aluno);
-		// } catch (BibliotecaException e) {
-		// throw new BibliotecaException(e.getMessage());
-		// }
+	public Aluno getByMatricula(Long matricula) throws BibliotecaException {
+		try {
+			return this.alunoDao.buscar(matricula);
+		} catch (PersistenceException e) {
+			throw new BibliotecaException(e.getMessage(), e);
+		}
 
 	}
 
-	public void buscarAluno(Long matricula) throws BibliotecaException {
-		alunoDao.buscar(matricula);
+	public List<Pessoa> getAll() throws BibliotecaException {
+		try {
+			return this.alunoDao.getAll();
+		} catch (PersistenceException e) {
+			throw new BibliotecaException(e.getMessage(), e);
+		}
 	}
-
-	// public List<Aluno> busca(Long matricula){
-	// alunoDao.buscarAluno
-	// }
 
 	public void addLivro(Livro livro) {
 

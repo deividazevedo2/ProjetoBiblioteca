@@ -20,42 +20,49 @@
 
 	<ui:define name="center">
 		<p:messages autoUpdate="true" />
-		<p:fieldset legend="Novo Aluno">
-			<h:panelGrid id="camposAluno" columns="2">
-				<h:outputText value="Nome: " />
-				<p:inputText id="nome" value="#{editarAlunoBean.aluno.nome}"
-					style="width:250px" />
 
-				<h:outputText value="Curso: " />
-				<p:inputText id="curso" value="#{editarAlunoBean.aluno.curso}"
-					style="width:250px" />
+		<h:form>
+			<p:fieldset legend="Novo Aluno">
+				<h:panelGrid id="camposAluno" columns="2">
+					<h:outputText value="Nome: " />
+					<p:inputText id="nome" value="#{editarAlunoBean.aluno.nome}"
+						style="width:250px" />
 
-				<h:outputText value="CPF: " />
-				<p:inputMask id="cpf" value="#{editarAlunoBean.aluno.cpf}"
-					mask="999.999.999-99" style="width:250px" />
+					<h:outputText value="Curso: " />
+					<p:inputText id="curso" value="#{editarAlunoBean.aluno.curso}"
+						style="width:250px" />
 
-				<h:outputText value="Matrícula: " />
-				<p:inputMask id="matricula"
-					value="#{editarAlunoBean.aluno.matricula}" mask="9999.9.999.9999"
-					style="width:250px" />
+					<h:outputText value="CPF: " />
+					<p:inputMask id="cpf" value="#{editarAlunoBean.aluno.cpf}"
+						mask="999.999.999-99" style="width:250px" />
 
-				<h:outputText value="Telefone: " />
-				<p:inputMask id="telefone" value="#{editarAlunoBean.aluno.telefone}"
-					mask="(99) 9999-9999" style="width:250px" />
+					<h:outputText value="Matrícula: " />
+					<p:inputText id="matricula"
+						value="#{editarAlunoBean.aluno.matricula}" style="width:250px" />
 
-				<h:outputText value="Endereço " />
-				<p:inputText id="endereco" value="#{editarAlunoBean.aluno.endereco}"
-					style="width:250px" />
-				<br />
-				<br />
-				<p:commandButton value="Salvar"
-					action="#{editarAlunoBean.salvarAluno}" icon="ui-icon-disk" />
-				<p:commandButton id="limparBotao" value="Limpar"
-					update="camposAluno" process="@this" icon="ui-icon-scissors">
-					<p:resetInput target="camposAluno" />
-				</p:commandButton>
-			</h:panelGrid>
-		</p:fieldset>
+					<h:outputText value="Telefone: " />
+					<p:inputMask id="telefone"
+						value="#{editarAlunoBean.aluno.telefone}" mask="(99) 9999-9999"
+						style="width:250px" />
+
+					<h:outputText value="Endereço " />
+					<p:inputText id="endereco"
+						value="#{editarAlunoBean.aluno.endereco}" style="width:250px" />
+					<br />
+					<br />
+
+					<f:facet name="footer">
+						<p:commandButton action="#{editarAlunoBean.salvarAluno}"
+							value="Salvar" icon="ui-icon-disk" ajax="false" />
+
+						<p:commandButton id="limparBotao" value="Limpar"
+							update="camposAluno" process="@this" icon="ui-icon-scissors">
+							<p:resetInput target="camposAluno" />
+						</p:commandButton>
+					</f:facet>
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

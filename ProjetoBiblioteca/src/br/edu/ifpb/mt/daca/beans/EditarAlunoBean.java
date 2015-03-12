@@ -5,6 +5,7 @@ import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.mt.daca.dao.AlunoDAO;
 import br.edu.ifpb.mt.daca.entities.Aluno;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 import br.edu.ifpb.mt.daca.service.AlunoService;
@@ -19,6 +20,7 @@ public class EditarAlunoBean extends ClasseAbstrata {
 	private static final long serialVersionUID = -79727005056917194L;
 
 	private Aluno aluno;
+	private AlunoDAO alunoDao = new AlunoDAO();
 
 	@Inject
 	private AlunoService alunoService;
@@ -38,7 +40,7 @@ public class EditarAlunoBean extends ClasseAbstrata {
 	public String salvarAluno() {
 		conversation.end();
 		try {
-			if (aluno.getCpf() != null) {
+			if (alunoDao.buscar(aluno.getMatricula()) != null) {
 				alunoService.editarAluno(aluno);
 				reportarMensagemDeSucesso("Aluno " + aluno.getNome()
 						+ " atualizado com sucesso!");
