@@ -17,6 +17,7 @@ public class Validador {
 		// if (validarMatricula(aluno.getMatricula())) {
 		// return false;
 		// }
+		//
 		return true;
 	}
 
