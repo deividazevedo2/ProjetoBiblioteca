@@ -21,10 +21,14 @@
 				<h:outputText value="Nome do aluno: " />
 				<p:inputText id="nomeFiltro" value="#{indexBean.nomeAluno}"
 					style="width:250px" />
+				<h:outputText value="Matrícula do aluno: " />
+				<p:inputText id="matriculaFiltro"
+					value="#{indexBean.matriculaAluno}" style="width:250px" />
 				<br />
 				<br />
 				<p:commandButton value="Filtrar" id="filtrarBotao"
-					update=":idTabela" action="#{indexBean.filtrar}" icon="ui-icon-search" />
+					update=":idTabela" action="#{indexBean.filtrar}"
+					icon="ui-icon-search" />
 				<p:commandButton id="limparBotao" value="Limpar"
 					update="camposFiltro" process="@this" icon="ui-icon-scissors">
 					<p:resetInput target="camposFiltro" />
