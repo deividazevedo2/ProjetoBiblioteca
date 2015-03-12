@@ -9,41 +9,52 @@
 
 <ui:composition template="/templates/template.xhtml">
 
+	<f:metadata>
+		<f:event listener="#{editarAlunoBean.preRenderView()}"
+			type="preRenderView" />
+	</f:metadata>
+
 	<ui:define name="title">
 	Biblioteca - Novo Aluno
 	</ui:define>
 
 	<ui:define name="center">
-		<p:messages />
+		<p:messages autoUpdate="true" />
 		<p:fieldset legend="Novo Aluno">
 			<h:panelGrid id="camposAluno" columns="2">
 				<h:outputText value="Nome: " />
-				<p:inputText id="nome" value="" style="width:250px" />
-
-				<h:outputText value="Curso: " />
-				<p:inputText id="curso" value="" style="width:250px" />
-
-				<h:outputText value="CPF: " />
-				<p:inputMask id="cpf" value="" mask="999.999.999-99"
+				<p:inputText id="nome" value="#{editarAlunoBean.aluno.nome}"
 					style="width:250px" />
 
+				<h:outputText value="Curso: " />
+				<p:inputText id="curso" value="#{editarAlunoBean.aluno.curso}"
+					style="width:250px" />
+
+				<h:outputText value="CPF: " />
+				<p:inputMask id="cpf" value="#{editarAlunoBean.aluno.cpf}"
+					mask="999.999.999-99" style="width:250px" />
+
 				<h:outputText value="Matrícula: " />
-				<p:inputMask id="matricula" value="" mask="9999.9.999.9999"
+				<p:inputMask id="matricula"
+					value="#{editarAlunoBean.aluno.matricula}" mask="9999.9.999.9999"
 					style="width:250px" />
 
 				<h:outputText value="Telefone: " />
-				<p:inputMask id="telefone" value="" mask="(99) 9999-9999"
-					style="width:250px" />
+				<p:inputMask id="telefone" value="#{editarAlunoBean.aluno.telefone}"
+					mask="(99) 9999-9999" style="width:250px" />
 
 				<h:outputText value="Endereço " />
-				<p:inputText id="endereco" value="" style="width:250px" />
+				<p:inputText id="endereco" value="#{editarAlunoBean.aluno.endereco}"
+					style="width:250px" />
+				<br />
+				<br />
+				<p:commandButton value="Salvar"
+					action="#{editarAlunoBean.salvarAluno}" icon="ui-icon-disk" />
+				<p:commandButton id="limparBotao" value="Limpar"
+					update="camposAluno" process="@this" icon="ui-icon-scissors">
+					<p:resetInput target="camposAluno" />
+				</p:commandButton>
 			</h:panelGrid>
-			<br />
-			<p:commandButton value="Salvar" id="filtrarBotao" icon="ui-icon-disk" />
-			<p:commandButton id="limparBotao" value="Limpar" update="camposAluno"
-				process="@this" icon="ui-icon-scissors">
-				<p:resetInput target="camposAluno" />
-			</p:commandButton>
 		</p:fieldset>
 	</ui:define>
 </ui:composition>
