@@ -8,9 +8,9 @@ public class Endereco {
 	private String rua;
 	private String bairro;
 	private String cidade;
-	private long cep;
+	private String cep;
 	private String uf;
-	private int numero;
+	private Integer numero;
 
 	public Endereco() {
 	}
@@ -39,19 +39,19 @@ public class Endereco {
 		this.cidade = cidade;
 	}
 
-	public long getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
-	public int getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 
@@ -68,7 +68,7 @@ public class Endereco {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
-		result = prime * result + (int) (cep ^ (cep >>> 32));
+		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
 		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
 		result = prime * result + numero;
 		result = prime * result + ((rua == null) ? 0 : rua.hashCode());
@@ -90,7 +90,10 @@ public class Endereco {
 				return false;
 		} else if (!bairro.equals(other.bairro))
 			return false;
-		if (cep != other.cep)
+		if (cep == null) {
+			if (other.cep != null)
+				return false;
+		} else if (!cep.equals(other.cep))
 			return false;
 		if (cidade == null) {
 			if (other.cidade != null)

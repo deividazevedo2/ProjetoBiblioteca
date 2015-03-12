@@ -50,7 +50,7 @@ public class MainSalvarAluno {
 			Endereco endereco = new Endereco();
 
 			endereco.setBairro("Bairro");
-			endereco.setCep(58500000);
+			// endereco.setCep(58500000);
 			endereco.setCidade("Monteiro");
 			endereco.setRua("Rua");
 			endereco.setNumero(12);
