@@ -25,27 +25,41 @@ public class AlunoService implements Serializable {
 
 	@TransacionalCdi
 	public void AddAluno(Aluno aluno) throws BibliotecaException {
-		if (validar.validarAluno(aluno))
-			this.alunoDao.salvar(aluno);
+		try {
+			if (validar.validarAluno(aluno)) {
+				this.alunoDao.salvar(aluno);
+			}
+		} catch (BibliotecaException e) {
+			throw new BibliotecaException(e.getMessage());
+		}
 	}
 
 	@TransacionalCdi
 	public void ExcluirAluno(Aluno aluno) throws BibliotecaException {
-		if (validar.validarAluno(aluno))
-			this.alunoDao.deletar(aluno);
+		try {
+			if (validar.validarAluno(aluno)) {
+				this.alunoDao.deletar(aluno);
+			}
+		} catch (BibliotecaException e) {
+			throw new BibliotecaException(e.getMessage());
+		}
 
 	}
 
 	@TransacionalCdi
 	public void EditarAluno(Aluno aluno) throws BibliotecaException {
-		if (validar.validarAluno(aluno))
-			this.alunoDao.alterar(aluno);
+		try {
+			if (validar.validarAluno(aluno))
+				this.alunoDao.alterar(aluno);
+		} catch (BibliotecaException e) {
+			throw new BibliotecaException(e.getMessage());
+		}
+
 	}
 
-	@TransacionalCdi
 	public void BuscarAluno(Long matricula) throws BibliotecaException {
-		if(validar.validarCampo(matricula))
-		alunoDao.buscar(matricula);
+		if (validar.validarCampo(matricula))
+			alunoDao.buscar(matricula);
 	}
 
 	public void AddLivro(Livro livro) {

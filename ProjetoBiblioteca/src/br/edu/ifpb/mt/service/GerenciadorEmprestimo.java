@@ -7,13 +7,14 @@ import br.edu.ifpb.mt.daca.dao.AlunoDAO;
 import br.edu.ifpb.mt.daca.dao.LivroDAO;
 import br.edu.ifpb.mt.daca.entities.Aluno;
 import br.edu.ifpb.mt.daca.entities.Livro;
+import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 
 public class GerenciadorEmprestimo {
 
 	AlunoDAO alunoDao = new AlunoDAO();
 	LivroDAO livroDao = new LivroDAO();
 
-	public void fazerEmprestimo(Long matricula, Long isbnLivro) {
+	public void fazerEmprestimo(Long matricula, Long isbnLivro) throws BibliotecaException {
 		Aluno aluno = alunoDao.buscarAlunoPelaMatricula(matricula);
 		Livro livro = livroDao.buscar(isbnLivro);
 		if (verificaParametrosNulos(aluno, livro)

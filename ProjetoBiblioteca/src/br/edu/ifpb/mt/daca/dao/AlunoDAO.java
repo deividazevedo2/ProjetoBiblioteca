@@ -15,16 +15,11 @@ public class AlunoDAO extends DAO {
 
 	public void salvar(Aluno aluno) throws BibliotecaException {
 		EntityManager em = getEntityManager();
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
 		try {
 			em.persist(aluno);
-			transaction.commit();
 		} catch (PersistenceException pe) {
-			pe.printStackTrace();
-			transaction.rollback();
-		} finally {
-			em.close();
+			throw new BibliotecaException("Erro ao salvar o aluno "
+					+ aluno.getNome(), pe);
 		}
 	}
 
@@ -74,23 +69,17 @@ public class AlunoDAO extends DAO {
 		return resultado;
 	}
 
-	public void deletar(Aluno aluno) {
+	public void deletar(Aluno aluno) throws BibliotecaException {
 		EntityManager em = getEntityManager();
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
 		try {
 			aluno = em.merge(aluno);
 			em.remove(aluno);
-			transaction.commit();
 		} catch (PersistenceException pe) {
-			pe.printStackTrace();
-			transaction.rollback();
-		} finally {
-			em.close();
+			throw new BibliotecaException("Erro ao deletar o aluno", pe);
 		}
 	}
 
-	public List<Aluno> buscarAlunoPeloNome(String nomeAluno) {
+	public List<Aluno> buscarAlunoPeloNome(String nomeAluno) throws BibliotecaException{
 		EntityManager em = getEntityManager();
 		List<Aluno> resultado = null;
 		if (nomeAluno == null) {
@@ -103,14 +92,12 @@ public class AlunoDAO extends DAO {
 			query.setParameter("nome", "%" + nomeAluno + "%");
 			resultado = query.getResultList();
 		} catch (PersistenceException pe) {
-			pe.printStackTrace();
-		} finally {
-			em.close();
-		}
+			throw new BibliotecaException("Erro ao recuperar aluno.", pe);
+		} 
 		return resultado;
 	}
 
-	public Aluno buscarAlunoPelaMatricula(Long matriculaAluno) {
+	public Aluno buscarAlunoPelaMatricula(Long matriculaAluno) throws BibliotecaException{
 		EntityManager em = getEntityManager();
 		Aluno resultado = null;
 		if (matriculaAluno == null) {
@@ -124,10 +111,8 @@ public class AlunoDAO extends DAO {
 			query.setParameter("matricula", matriculaAluno);
 			resultado = query.getSingleResult();
 		} catch (PersistenceException pe) {
-			pe.printStackTrace();
-		} finally {
-			em.close();
-		}
+			throw new BibliotecaException("Erro ao recuperar aluno por matricula.", pe);
+		} 
 		return resultado;
 	}
 

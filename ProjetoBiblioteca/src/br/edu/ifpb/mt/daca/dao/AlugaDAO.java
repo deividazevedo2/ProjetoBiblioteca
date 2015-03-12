@@ -5,25 +5,20 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 
 import br.edu.ifpb.mt.daca.entities.Aluga;
+import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 import br.edu.ifpb.mt.service.GerenciadorEmprestimo;
 
 public class AlugaDAO extends DAO {
 
 	GerenciadorEmprestimo ge = new GerenciadorEmprestimo();
 
-	public void alugar(Aluga aluga) {
+	public void alugar(Aluga aluga) throws BibliotecaException {
 		EntityManager em = getEntityManager();
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
 		try {
 			ge.fazerEmprestimo(aluga.getMatriculaAluno(), aluga.getIsbnLivro());
 			em.persist(aluga);
-			transaction.commit();
-		} catch (PersistenceException pe) {
-			pe.printStackTrace();
-			transaction.rollback();
-		} finally {
-			em.close();
+		} catch (BibliotecaException e) {
+			throw new BibliotecaException("Erro ao fazer o emprestimo", e);
 		}
 	}
 }
