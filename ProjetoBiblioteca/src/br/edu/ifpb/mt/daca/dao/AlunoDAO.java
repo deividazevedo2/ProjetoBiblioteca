@@ -58,8 +58,8 @@ public class AlunoDAO extends DAO {
 
 		String jpql = "select a from Aluno_JS a where 1=1";
 
-		if (matriculaAluno != null && matriculaAluno.equals("")) {
-			jpql += " and a.matricula like :matricula";
+		if (matriculaAluno != null && !matriculaAluno.equals("")) {
+			jpql += " and a.matricula = :matricula";
 		}
 
 		if (nomeAluno != null && !nomeAluno.isEmpty()) {
@@ -68,7 +68,7 @@ public class AlunoDAO extends DAO {
 
 		TypedQuery<Aluno> query = em.createQuery(jpql, Aluno.class);
 
-		if (matriculaAluno != null && matriculaAluno.equals("")) {
+		if (matriculaAluno != null && !matriculaAluno.equals("")) {
 			query.setParameter("matricula", matriculaAluno);
 		}
 
