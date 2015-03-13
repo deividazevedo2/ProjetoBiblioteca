@@ -50,7 +50,7 @@ public class EmprestimoBean extends ClasseAbstrata {
 		try {
 			if (emprestimo.getIsbnLivro() != null
 					&& emprestimo.getMatriculaAluno() != null) {
-				emprestimoService.fazerEmprestimo(emprestimo);
+				emprestimoService.fazerDevolucao(emprestimo);
 				reportarMensagemDeSucesso("Empréstimo realizado com sucesso!");
 			}
 		} catch (BibliotecaException e) {

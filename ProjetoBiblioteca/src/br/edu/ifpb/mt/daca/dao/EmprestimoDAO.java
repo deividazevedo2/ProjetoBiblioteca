@@ -36,7 +36,7 @@ public class EmprestimoDAO extends DAO {
 		try {
 			ge.fazerDevolucao(emprestimo.getMatriculaAluno(),
 					emprestimo.getIsbnLivro());
-			em.persist(emprestimo);
+			em.remove(emprestimo);
 		} catch (BibliotecaException e) {
 			throw new BibliotecaException("Erro ao fazer a devolução", e);
 		}
