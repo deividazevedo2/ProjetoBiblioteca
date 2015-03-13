@@ -106,9 +106,9 @@ public class Livro implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Livro [isbn=" + isbn + ", titulo=" + titulo + ", descricao="
-				+ descricao + ", editora=" + editora + ", exemplares="
-				+ exemplares + ", autores=" + autores + "]";
+		return "Livro [id=" + id + ", isbn=" + isbn + ", titulo=" + titulo
+				+ ", descricao=" + descricao + ", editora=" + editora
+				+ ", exemplares=" + exemplares + ", autores=" + autores + "]";
 	}
 
 	@Override
@@ -119,8 +119,10 @@ public class Livro implements Serializable {
 		result = prime * result
 				+ ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((editora == null) ? 0 : editora.hashCode());
-		result = prime * result + exemplares;
-		result = prime * result + (int) (isbn ^ (isbn >>> 32));
+		result = prime * result
+				+ ((exemplares == null) ? 0 : exemplares.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
 		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		return result;
 	}
@@ -149,9 +151,20 @@ public class Livro implements Serializable {
 				return false;
 		} else if (!editora.equals(other.editora))
 			return false;
-		if (exemplares != other.exemplares)
+		if (exemplares == null) {
+			if (other.exemplares != null)
+				return false;
+		} else if (!exemplares.equals(other.exemplares))
 			return false;
-		if (isbn != other.isbn)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (isbn == null) {
+			if (other.isbn != null)
+				return false;
+		} else if (!isbn.equals(other.isbn))
 			return false;
 		if (titulo == null) {
 			if (other.titulo != null)

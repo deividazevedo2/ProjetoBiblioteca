@@ -26,11 +26,11 @@ public class LivroDAO extends DAO {
 		}
 	}
 
-	public Livro buscar(Long isbnLivro) throws BibliotecaException {
+	public Livro buscar(Long idLivro) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		Livro resultado = null;
 		try {
-			resultado = em.find(Livro.class, isbnLivro);
+			resultado = em.find(Livro.class, idLivro);
 		} catch (PersistenceException pe) {
 			throw new BibliotecaException(
 					"Ocorreu algum problema ao tentar recuperar o livro.", pe);

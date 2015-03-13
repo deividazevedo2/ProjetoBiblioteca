@@ -25,10 +25,10 @@ public class LivroConverter implements Converter {
 		if (valor == null || valor.trim().isEmpty()) {
 			return null;
 		}
-		Long isbn = Long.valueOf(valor);
+		Long idLivro = Long.valueOf(valor);
 
 		try {
-			return livros.buscar(isbn);
+			return livros.buscar(idLivro);
 		} catch (BibliotecaException e) {
 			String msgErroStr = String
 					.format("Erro de conversão! Não foi possível realizar a conversão da string '%s' para o tipo esperado.",

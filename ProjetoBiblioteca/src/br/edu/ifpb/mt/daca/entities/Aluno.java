@@ -55,11 +55,19 @@ public class Aluno extends Pessoa {
 	}
 
 	@Override
+	public String toString() {
+		return "Aluno [matricula=" + matricula + ", curso=" + curso
+				+ ", livros=" + livros + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((curso == null) ? 0 : curso.hashCode());
-		result = prime * result + (int) (matricula ^ (matricula >>> 32));
+		result = prime * result + ((livros == null) ? 0 : livros.hashCode());
+		result = prime * result
+				+ ((matricula == null) ? 0 : matricula.hashCode());
 		return result;
 	}
 
@@ -77,14 +85,17 @@ public class Aluno extends Pessoa {
 				return false;
 		} else if (!curso.equals(other.curso))
 			return false;
-		if (matricula != other.matricula)
+		if (livros == null) {
+			if (other.livros != null)
+				return false;
+		} else if (!livros.equals(other.livros))
+			return false;
+		if (matricula == null) {
+			if (other.matricula != null)
+				return false;
+		} else if (!matricula.equals(other.matricula))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Aluno [matricula=" + matricula + ", curso=" + curso + "]";
 	}
 
 }
