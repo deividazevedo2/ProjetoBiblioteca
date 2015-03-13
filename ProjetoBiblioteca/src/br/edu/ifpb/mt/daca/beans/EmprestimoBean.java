@@ -24,6 +24,9 @@ public class EmprestimoBean extends ClasseAbstrata {
 	private Conversation conversation;
 
 	public void preRenderView() {
+		if (emprestimo == null) {
+			emprestimo = new Emprestimo();
+		}
 		if (conversation.isTransient()) {
 			conversation.begin();
 		}
