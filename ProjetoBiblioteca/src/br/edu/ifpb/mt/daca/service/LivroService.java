@@ -50,9 +50,9 @@ public class LivroService implements Serializable {
 
 	}
 
-	public Livro getByIsbn(Long isbn) throws BibliotecaException {
+	public Livro getByIsbn(Long idLivro) throws BibliotecaException {
 		try {
-			return this.livroDao.buscar(isbn);
+			return this.livroDao.buscar(idLivro);
 		} catch (PersistenceException e) {
 			throw new BibliotecaException(e.getMessage(), e);
 		}
