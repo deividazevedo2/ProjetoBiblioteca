@@ -33,22 +33,6 @@ public class IndexLivroBean extends ClasseAbstrata {
 		filtrar();
 	}
 
-	public Long getIsbnLivro() {
-		return isbnLivro;
-	}
-
-	public String getNomeLivro() {
-		return nomeLivro;
-	}
-
-	public void setIsbnLivro(Long isbnLivro) {
-		this.isbnLivro = isbnLivro;
-	}
-
-	public void setNomeLivro(String nomeLivro) {
-		this.nomeLivro = nomeLivro;
-	}
-
 	public List<Livro> getLivros() {
 		return livros;
 	}
