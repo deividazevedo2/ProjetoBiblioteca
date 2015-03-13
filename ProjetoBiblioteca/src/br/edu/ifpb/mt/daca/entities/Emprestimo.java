@@ -12,9 +12,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name = "Aluga")
-@Table(name = "TB_Aluga")
-public class Aluga implements Serializable {
+@Entity(name = "Emprestimo")
+@Table(name = "TB_Emprestimo")
+public class Emprestimo implements Serializable {
 
 	/**
 	 * 
@@ -34,13 +34,13 @@ public class Aluga implements Serializable {
 
 	@Column
 	@Temporal(TemporalType.DATE)
-	private Date dataEntrega;
+	private Date dataEmprestimo;
 
 	@Column
 	@Temporal(TemporalType.DATE)
 	private Date dataDevolucao;
 
-	public Aluga() {
+	public Emprestimo() {
 	}
 
 	public Integer getId() {
@@ -67,12 +67,12 @@ public class Aluga implements Serializable {
 		this.isbnLivro = isbnLivro;
 	}
 
-	public Date getDataEntrega() {
-		return dataEntrega;
+	public Date getDataEmprestimo() {
+		return dataEmprestimo;
 	}
 
-	public void setDataEntrega(Date dataEntrega) {
-		this.dataEntrega = dataEntrega;
+	public void setDataEmprestimo(Date dataEmprestimo) {
+		this.dataEmprestimo = dataEmprestimo;
 	}
 
 	public Date getDataDevolucao() {
@@ -90,7 +90,7 @@ public class Aluga implements Serializable {
 		result = prime * result
 				+ ((dataDevolucao == null) ? 0 : dataDevolucao.hashCode());
 		result = prime * result
-				+ ((dataEntrega == null) ? 0 : dataEntrega.hashCode());
+				+ ((dataEmprestimo == null) ? 0 : dataEmprestimo.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((isbnLivro == null) ? 0 : isbnLivro.hashCode());
@@ -107,16 +107,16 @@ public class Aluga implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Aluga other = (Aluga) obj;
+		Emprestimo other = (Emprestimo) obj;
 		if (dataDevolucao == null) {
 			if (other.dataDevolucao != null)
 				return false;
 		} else if (!dataDevolucao.equals(other.dataDevolucao))
 			return false;
-		if (dataEntrega == null) {
-			if (other.dataEntrega != null)
+		if (dataEmprestimo == null) {
+			if (other.dataEmprestimo != null)
 				return false;
-		} else if (!dataEntrega.equals(other.dataEntrega))
+		} else if (!dataEmprestimo.equals(other.dataEmprestimo))
 			return false;
 		if (id == null) {
 			if (other.id != null)
