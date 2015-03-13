@@ -37,7 +37,8 @@
 			<br />
 			<p:dataTable id="idTabela" var="livro"
 				value="#{indexLivroBean.livros}"
-				emptyMessage="Nenhum registro encontrado." paginator="true" rows="6">
+				emptyMessage="Nenhum registro encontrado."
+				style="text-align: center" paginator="true" rows="6">
 
 				<p:column headerText="ISBN">
 					<h:outputText value="#{livro.isbn}" />
