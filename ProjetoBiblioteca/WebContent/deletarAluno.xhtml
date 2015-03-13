@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+<ui:composition template="/templates/template.xhtml">
+	<f:metadata>
+		<o:viewParam name="aluno" value="#{deletarAlunoBean.aluno}"
+			converter="#{alunoConverter}" />
+	</f:metadata>
+	<ui:define name="title">
+		Deletar aluno
+	</ui:define>
+
+	<ui:define name="center">
+		<p:growl id="messages" autoUpdate="true" showDetail="true"
+			showSummary="true" />
+		<h:form>
+			<p:panelGrid columns="1">
+				<f:facet name="header">
+				Confirmação!
+			</f:facet>
+				<h:outputLabel
+					value="Você quer deletar '#{deletarAlunoBean.aluno.nome}'?" />
+				<f:facet name="footer">
+					<p:commandButton action="#{deletarAlunoBean.deletar}"
+						value="Deletar" icon="ui-icon-close" />
+					<p:commandButton action="#{deletarAlunoBean.cancel}"
+						value="Cancelar" icon="ui-icon-cancel" />
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

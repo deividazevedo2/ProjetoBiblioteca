@@ -45,7 +45,7 @@ public class DeletarAlunoBean extends ClasseAbstrata {
 			reportarMensagemDeErro(e.getMessage());
 			return null;
 		}
-		return "index?faces-redirect=true";
+		return "alunos?faces-redirect=true";
 	}
 
 	public String cancel() {

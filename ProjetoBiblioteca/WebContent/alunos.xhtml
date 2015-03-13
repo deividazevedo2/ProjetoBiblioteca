@@ -65,8 +65,8 @@
 				</p:column>
 
 				<p:column headerText="Deletar">
-					<p:link outcome="index.xhtml" value="Deletar Aluno">
-						<f:param name="aluno" />
+					<p:link outcome="deletarAluno.xhtml" value="Deletar Aluno">
+						<f:param name="aluno" value="#{aluno.id}" />
 					</p:link>
 				</p:column>
 			</p:dataTable>
