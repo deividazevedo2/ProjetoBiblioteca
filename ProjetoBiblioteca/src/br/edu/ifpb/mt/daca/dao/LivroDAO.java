@@ -66,7 +66,7 @@ public class LivroDAO extends DAO {
 		EntityManager em = getEntityManager();
 		List<Livro> resultado = null;
 
-		String jpql = "SELECT l FROM tb_livro l where 1=1";
+		String jpql = "SELECT l FROM TB_Livro l where 1=1";
 
 		if (isbnLivro != null && !isbnLivro.equals("")) {
 			jpql += " and l.isbn = :isbn";
