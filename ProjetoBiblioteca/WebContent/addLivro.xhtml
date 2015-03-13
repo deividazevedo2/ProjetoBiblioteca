@@ -15,7 +15,7 @@
 
 	<ui:define name="center">
 		<p:messages />
-		<p:fieldset legend="Novo Livro <depois tirar>">
+		<p:fieldset legend="Novo Livro">
 			<h:panelGrid id="camposLivro" columns="2">
 				<h:outputText value="Título: " />
 				<p:inputText id="titulo" value="" style="width:250px" />
@@ -31,8 +31,7 @@
 			</h:panelGrid>
 
 			<br />
-			<p:commandButton value="Salvar" id="filtrarBotao"
-				icon="ui-icon-disk" />
+			<p:commandButton value="Salvar" id="filtrarBotao" icon="ui-icon-disk" />
 			<p:commandButton id="limparBotao" value="Limpar" update="camposLivro"
 				process="@this" icon="ui-icon-scissors">
 				<p:resetInput target="camposLivro" />

@@ -44,7 +44,7 @@ public class IndexLivroBean extends ClasseAbstrata {
 			reportarMensagemDeErro(e.getMessage());
 		}
 	}
-//depois tirar esse comentario
+
 	public void limpar() {
 		nomeLivro = null;
 		isbnLivro = null;

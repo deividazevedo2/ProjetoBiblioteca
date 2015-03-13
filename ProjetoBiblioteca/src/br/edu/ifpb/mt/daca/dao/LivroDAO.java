@@ -38,7 +38,7 @@ public class LivroDAO extends DAO {
 
 		return resultado;
 	}
-//depois tirar esse comentario
+
 	public Livro alterar(Livro livro) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		Livro resultado = livro;
