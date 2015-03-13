@@ -30,7 +30,7 @@
 				<h:outputText value="Aluno: " for="aluno" />
 				<h:panelGroup>
 					<h:form>
-						<h:outputText id="aluno" value="#{editarAlunoBean.aluno.nome}" />
+						<p:inputText id="aluno" value="#{editarAlunoBean.aluno.matricula}" />
 						<p:spacer width="10px" />
 						<p:commandButton icon="ui-icon-search" title="Pesquisar"
 							action="#{editarAlunoBean.abrirDialogo}" process="@this"
@@ -45,7 +45,7 @@
 				<h:outputText value="Livro: " for="livro" />
 				<h:panelGroup>
 					<h:form>
-						<h:outputText id="livro" value="#{editarLivroBean.livro.titulo}" />
+						<p:inputText id="livro" value="#{editarLivroBean.livro.isbn}" />
 						<p:spacer width="10px" />
 						<p:commandButton icon="ui-icon-search" title="Pesquisar"
 							action="#{editarLivroBean.abrirDialogo}" process="@this"
