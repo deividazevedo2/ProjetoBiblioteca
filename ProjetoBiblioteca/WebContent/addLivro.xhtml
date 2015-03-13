@@ -52,20 +52,20 @@
 					<h:outputText value="Editora: " />
 					<p:inputText id="editora" value="#{editarLivroBean.livro.editora}"
 						style="width:250px" />
+					<br />
+					<br />
+
+					<f:facet name="footer">
+						<p:commandButton value="Salvar"
+							action="#{editarLivroBean.salvarLivro}" id="filtrarBotao"
+							icon="ui-icon-disk" />
+
+						<p:commandButton id="limparBotao" value="Limpar"
+							update="camposLivro" process="@this" icon="ui-icon-scissors">
+							<p:resetInput target="camposLivro" />
+						</p:commandButton>
+					</f:facet>
 				</h:panelGrid>
-				<br />
-				<br />
-
-				<f:facet name="footer">
-					<p:commandButton value="Salvar"
-						action="#{editarLivroBean.salvarLivro}" id="filtrarBotao"
-						icon="ui-icon-disk" />
-
-					<p:commandButton id="limparBotao" value="Limpar"
-						update="camposLivro" process="@this" icon="ui-icon-scissors">
-						<p:resetInput target="camposLivro" />
-					</p:commandButton>
-				</f:facet>
 			</p:fieldset>
 		</h:form>
 	</ui:define>
