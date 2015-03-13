@@ -5,9 +5,18 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
 
 <ui:composition template="/templates/template.xhtml">
+
+	<f:metadata>
+		<o:viewParam name="emprestimo" value="#{emprestimoBean.emprestimo}"
+			converter="#{emprestimoConverter}" />
+		<f:event listener="#{emprestimoBean.preRenderView()}"
+			type="preRenderView" />
+	</f:metadata>
 
 	<ui:define name="title">
 	Biblioteca - Empréstimo/Devolução
