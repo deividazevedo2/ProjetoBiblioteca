@@ -63,8 +63,8 @@
 				</p:column>
 
 				<p:column headerText="Deletar">
-					<p:link outcome="index.xhtml" value="Deletar Livro">
-						<f:param name="livro" />
+					<p:link outcome="deletarLivro.xhtml" value="Deletar Livro">
+						<f:param name="livro" value="#{livro.id}" />
 					</p:link>
 				</p:column>
 			</p:dataTable>
