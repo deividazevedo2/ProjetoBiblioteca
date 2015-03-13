@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/templateList.xhtml">
+
+	<h:head>
+		<title>Biblioteca - Selecionar livro</title>
+	</h:head>
+
+	<ui:define name="center">
+		<h:form>
+			<p:inputText id="nomeLivro" size="50" value="#{indexLivroBean.nomeLivro}"
+				placeholder="Titulo do livro" />
+			<p:spacer width="10px" />
+			<p:commandButton value="Filtrar" id="filtrarBotao" update=":lista"
+				action="#{indexLivroBean.filtrar}" icon="ui-icon-search" />
+		</h:form>
+		<br />
+		<p:dataTable id="lista" var="livro" value="#{indexLivroBean.livros}"
+			emptyMessage="Nenhum registro encontrado." paginator="true" rows="10"
+			style="text-align: center">
+
+			<p:column headerText="ISBN">
+				<h:outputText value="#{livro.isbn}" />
+			</p:column>
+
+			<p:column headerText="Titulo">
+				<h:outputText value="#{livro.titulo}" />
+			</p:column>
+
+			<p:column headerText="Selecionar">
+				<p:commandButton title="Selecionar" icon="ui-icon-check"
+					action="#{editarLivroBean.selecionar(livro)}" process="@this" />
+			</p:column>
+
+		</p:dataTable>
+	</ui:define>
+</ui:composition>
+</html>

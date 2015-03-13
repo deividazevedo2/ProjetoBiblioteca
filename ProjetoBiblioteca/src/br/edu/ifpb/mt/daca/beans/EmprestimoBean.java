@@ -44,7 +44,7 @@ public class EmprestimoBean extends ClasseAbstrata {
 
 		return "emprestimo.xhtml?faces-redirect=true";
 	}
-	
+
 	public String efetuarDevolucao() {
 		conversation.end();
 		try {
@@ -60,4 +60,5 @@ public class EmprestimoBean extends ClasseAbstrata {
 
 		return "emprestimo.xhtml?faces-redirect=true";
 	}
+
 }
