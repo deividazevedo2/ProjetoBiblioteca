@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,6 +22,10 @@ public class Livro implements Serializable {
 	private static final long serialVersionUID = -1633782816629095660L;
 
 	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	@Column(name = "ISBN")
 	private Long isbn;
 
@@ -40,6 +46,14 @@ public class Livro implements Serializable {
 
 	public Livro() {
 
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTitulo() {
