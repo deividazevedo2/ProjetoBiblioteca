@@ -5,38 +5,69 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
 
 <ui:composition template="/templates/template.xhtml">
+
+	<f:metadata>
+		<o:viewParam name="livro" value="#{editarLivroBean.livro}"
+			converter="#{livroConverter}" />
+		<f:event listener="#{editarLivroBean.preRenderView()}"
+			type="preRenderView" />
+	</f:metadata>
 
 	<ui:define name="title">
 	Biblioteca - Novo Livro
 	</ui:define>
 
 	<ui:define name="center">
-		<p:messages />
-		<p:fieldset legend="Novo Livro">
-			<h:panelGrid id="camposLivro" columns="2">
-				<h:outputText value="Título: " />
-				<p:inputText id="titulo" value="" style="width:250px" />
+		<p:growl id="messages" autoUpdate="true" showDetail="true"
+			showSummary="true" />
 
-				<h:outputText value="Descrição: " />
-				<p:inputText id="descricao" value="" style="width:250px" />
+		<h:form>
+			<p:fieldset legend="Novo Livro">
+				<h:panelGrid id="camposLivro" columns="2"
+					value="#{editarLivroBean.livros}"
+					emptyMessage="Nenhum registro encontrado.">
 
-				<h:outputText value="ISBN: " />
-				<p:inputText id="isbn" value="" style="width:250px" />
+					<p:outputLabel value="Id: "
+						rendered="#{!empty editarLivroBean.livro.id}" />
+					<p:outputLabel value="#{editarLivroBean.livro.id}"
+						rendered="#{!empty editarLivroBean.livro.id}" />
 
-				<h:outputText value="Editora: " />
-				<p:inputText id="editora" value="" style="width:250px" />
-			</h:panelGrid>
+					<h:outputText value="Título: " />
+					<p:inputText id="titulo" value="#{editarLivroBean.livro.titulo}"
+						style="width:250px" />
 
-			<br />
-			<p:commandButton value="Salvar" id="filtrarBotao" icon="ui-icon-disk" />
-			<p:commandButton id="limparBotao" value="Limpar" update="camposLivro"
-				process="@this" icon="ui-icon-scissors">
-				<p:resetInput target="camposLivro" />
-			</p:commandButton>
-		</p:fieldset>
+					<h:outputText value="Descrição: " />
+					<p:inputText id="descricao"
+						value="#{editarLivroBean.livro.descricao}" style="width:250px" />
+
+					<h:outputText value="ISBN: " />
+					<p:inputText id="isbn" value="#{editarLivroBean.livro.isbn}"
+						style="width:250px" />
+
+					<h:outputText value="Editora: " />
+					<p:inputText id="editora" value="#{editarLivroBean.livro.editora}"
+						style="width:250px" />
+				</h:panelGrid>
+				<br />
+				<br />
+
+				<f:facet name="footer">
+					<p:commandButton value="Salvar"
+						action="#{editarLivroBean.salvarLivro}" id="filtrarBotao"
+						icon="ui-icon-disk" />
+
+					<p:commandButton id="limparBotao" value="Limpar"
+						update="camposLivro" process="@this" icon="ui-icon-scissors">
+						<p:resetInput target="camposLivro" />
+					</p:commandButton>
+				</f:facet>
+			</p:fieldset>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

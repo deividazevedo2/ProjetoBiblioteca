@@ -13,9 +13,6 @@ import br.edu.ifpb.mt.daca.service.LivroService;
 @ConversationScoped
 public class EditarLivroBean extends ClasseAbstrata {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2951780582455065780L;
 
 	private Livro livro;
@@ -36,7 +33,6 @@ public class EditarLivroBean extends ClasseAbstrata {
 	}
 
 	public String salvarLivro() {
-
 		conversation.end();
 		try {
 			if (livro.getId() != null) {
@@ -54,7 +50,6 @@ public class EditarLivroBean extends ClasseAbstrata {
 		}
 
 		return "livros.xhtml?faces-redirect=true";
-
 	}
 
 	public Livro getLivro() {
@@ -64,5 +59,4 @@ public class EditarLivroBean extends ClasseAbstrata {
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-
 }

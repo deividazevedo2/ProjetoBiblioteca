@@ -14,15 +14,21 @@
 	</ui:define>
 
 	<ui:define name="center">
-		<p:messages />
+		<p:growl id="messages" autoUpdate="true" showDetail="true"
+			showSummary="true" />
 		<p:fieldset legend="Livros">
 			<h:form id="camposFiltro">
 				<h:outputText value="Título do livro: " />
-				<p:inputText id="nomeFiltro" value="" style="width:250px" />
+				<p:inputText id="nomeFiltro" value="#{indexLivroBean.nomeLivro}"
+					style="width:250px" />
+				<h:outputText value="ISBN do livro: " />
+				<p:inputText id="isbnFiltro" value="#{indexLivroBean.isbnLivro}"
+					style="width:250px" />
 				<br />
 				<br />
 				<p:commandButton value="Filtrar" id="filtrarBotao"
-					update=":idTabela" icon="ui-icon-search" />
+					update=":idTabela" action="#{indexLivroBean.filtrar}"
+					icon="ui-icon-search" />
 				<p:commandButton id="limparBotao" value="Limpar"
 					update="camposFiltro" process="@this" icon="ui-icon-scissors">
 					<p:resetInput target="camposFiltro" />
@@ -30,26 +36,28 @@
 			</h:form>
 			<br />
 			<p:dataTable id="idTabela" var="livro"
+				value="#{indexLivroBean.livros}"
 				emptyMessage="Nenhum registro encontrado.">
+
 				<p:column headerText="ISBN">
-					<h:outputText />
+					<h:outputText value="#{livro.isbn}" />
 				</p:column>
 
 				<p:column headerText="Título">
-					<h:outputText />
+					<h:outputText value="#{livro.titulo}" />
 				</p:column>
 
 				<p:column headerText="Exemplares">
-					<h:outputText />
+					<h:outputText value="#{livro.exemplares}" />
 				</p:column>
 
 				<p:column headerText="Autores">
-					<h:outputText />
+					<h:outputText value="#{livro.autores}" />
 				</p:column>
 
 				<p:column headerText="Editar">
-					<p:link outcome="index.xhtml" value="Editar Livro">
-						<f:param name="livro" />
+					<p:link outcome="addLivro.xhtml" value="Editar Livro">
+						<f:param name="livro" value="#{livro.id}" />
 					</p:link>
 				</p:column>
 
