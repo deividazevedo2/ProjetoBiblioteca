@@ -37,8 +37,9 @@ public class EmprestimoDAO extends DAO {
 	public void fazerDevolucao(Emprestimo emprestimo)
 			throws BibliotecaException {
 		EntityManager em = getEntityManager();
+		this.em = em;
 		try {
-			ge.fazerDevolucao(emprestimo.getMatriculaAluno(),
+			fazerDevolucao(emprestimo.getMatriculaAluno(),
 					emprestimo.getIsbnLivro());
 			em.remove(emprestimo);
 		} catch (BibliotecaException e) {
@@ -110,8 +111,8 @@ public class EmprestimoDAO extends DAO {
 				aluno.setLivros(livros);
 				livro.setExemplares(quantidade - 1);
 				ge.atualizarDatas(emprestimo);
-				alterarAluno(aluno);
 				alterarLivro(livro);
+				alterarAluno(aluno);
 			}
 		} catch (BibliotecaException e) {
 			throw new BibliotecaException("Erro ao realizar este empréstimo.",
@@ -178,6 +179,28 @@ public class EmprestimoDAO extends DAO {
 					"Ocorreu algum problema ao tentar atualizar o livro.", pe);
 		}
 		return resultado;
+	}
+	
+	public void fazerDevolucao(Long matriculaAluno, Long isbnLivro)
+			throws BibliotecaException {
+		Aluno aluno = alunoDoEmprestimo(matriculaAluno);
+		Livro livro = livroDoEmprestimo(isbnLivro);
+		if (ge.verificaParametrosNulos(aluno, livro)) {
+			List<Livro> livros = ge.pegaListaDeLivros(aluno);
+			devolver(livro, aluno, livros);
+		}
+	}
+
+	private void devolver(Livro livro, Aluno aluno, List<Livro> livros)
+			throws BibliotecaException {
+		if (livros.contains(livro)) {
+			livros.remove(livro);
+			livro.setExemplares(livro.getExemplares() + 1);
+			aluno.setLivros(livros);
+			alterarLivro(livro);
+			alterarAluno(aluno);
+		}
+
 	}
 
 }

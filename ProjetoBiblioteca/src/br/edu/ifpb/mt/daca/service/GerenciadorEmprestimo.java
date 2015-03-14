@@ -36,28 +36,6 @@ public class GerenciadorEmprestimo {
 
 	}
 
-	public void fazerDevolucao(Long matriculaAluno, Long isbnLivro)
-			throws BibliotecaException {
-		Aluno aluno = alunoDao.buscarAlunoPelaMatricula(matriculaAluno);
-		Livro livro = livroDao.buscar(isbnLivro);
-		if (verificaParametrosNulos(aluno, livro)) {
-			List<Livro> livros = pegaListaDeLivros(aluno);
-			devolver(livro, aluno, livros);
-		}
-	}
-
-	private void devolver(Livro livro, Aluno aluno, List<Livro> livros)
-			throws BibliotecaException {
-		if (livros.contains(livro)) {
-			livros.remove(livro);
-			livro.setExemplares(livro.getExemplares() + 1);
-			aluno.setLivros(livros);
-			livroDao.alterar(livro);
-			alunoDao.alterar(aluno);
-		}
-
-	}
-
 	public List<Livro> pegaListaDeLivros(Aluno aluno) {
 		List<Livro> livros = aluno.getLivros();
 		if (livros == null) {
