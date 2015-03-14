@@ -1,12 +1,18 @@
 package br.edu.ifpb.mt.daca.beans;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
+
+import br.edu.ifpb.mt.daca.entities.Aluno;
 import br.edu.ifpb.mt.daca.entities.Emprestimo;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 import br.edu.ifpb.mt.daca.service.EmprestimoService;
@@ -50,12 +56,20 @@ public class IndexEmprestimosBean extends ClasseAbstrata {
 		this.matriculaAluno = matriculaAluno;
 	}
 
-	public List<Emprestimo> getEmprestimos() {
+	public List<Emprestimo> getEmprestimosExpirados() {
+		return emprestimosExpirados;
+	}
+
+	public List<Emprestimo> getTodosEmprestimos() {
 		return todosEmprestimos;
 	}
 
-	public List<Emprestimo> getEmprestimosExpirados() {
-		return emprestimosExpirados;
+	public void setEmprestimosExpirados(List<Emprestimo> emprestimosExpirados) {
+		this.emprestimosExpirados = emprestimosExpirados;
+	}
+
+	public void setTodosEmprestimos(List<Emprestimo> todosEmprestimos) {
+		this.todosEmprestimos = todosEmprestimos;
 	}
 
 	public void filtrar() {
@@ -71,6 +85,21 @@ public class IndexEmprestimosBean extends ClasseAbstrata {
 	public void limpar() {
 		matriculaAluno = null;
 		isbnLivro = null;
+	}
+
+	public void abrirDialogo() {
+		Map<String, Object> opcoes = new HashMap<>();
+		opcoes.put("modal", true);
+		opcoes.put("resizable", false);
+		opcoes.put("contentHeight", 470);
+
+		RequestContext.getCurrentInstance().openDialog("emprestimosExpirados",
+				opcoes, null);
+
+	}
+
+	public void fecharDialogo() {
+		RequestContext.getCurrentInstance().closeDialog(null);
 	}
 
 }

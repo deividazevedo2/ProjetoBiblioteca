@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/templateList.xhtml">
+
+	<ui:define name="title">
+	Biblioteca - Empréstimos Expirados
+	</ui:define>
+
+	<ui:define name="center">
+		<p:growl id="messages" autoUpdate="true" showDetail="true"
+			showSummary="true" />
+		<h:form>
+			<p:dataTable id="idTabela" var="emprestimo"
+				value="#{indexEmprestimosBean.emprestimosExpirados}"
+				emptyMessage="Nenhum registro encontrado." paginator="true"
+				rows="10" style="text-align: center">
+
+				<p:column headerText="Matrícula Aluno">
+					<h:outputText value="#{emprestimo.matriculaAluno}" />
+				</p:column>
+
+				<p:column headerText="ISBN Livro">
+					<h:outputText value="#{emprestimo.isbnLivro}" />
+				</p:column>
+
+				<p:column headerText="Data de empréstimo">
+					<h:outputText value="#{emprestimo.dataEmprestimo}" />
+				</p:column>
+
+				<p:column headerText="Data de devolução">
+					<h:outputText value="#{emprestimo.dataDevolucao}" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<center>
+				<p:commandButton value="Fechar" icon="ui-icon-close"
+					action="#{indexEmprestimosBean.fecharDialogo}" process="@this"
+					update="@none">
+				</p:commandButton>
+			</center>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
