@@ -1,9 +1,15 @@
 package br.edu.ifpb.mt.daca.beans;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 import br.edu.ifpb.mt.daca.entities.Livro;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
@@ -60,23 +66,23 @@ public class EditarLivroBean extends ClasseAbstrata {
 		this.livro = livro;
 	}
 
-//	public void abrirDialogo() {
-//		Map<String, Object> opcoes = new HashMap<>();
-//		opcoes.put("modal", true);
-//		opcoes.put("resizable", false);
-//		opcoes.put("contentHeight", 470);
-//
-//		RequestContext.getCurrentInstance().openDialog("listaLivros", opcoes,
-//				null);
-//
-//	}
-//
-//	public void selecionar(Livro livro) {
-//		RequestContext.getCurrentInstance().closeDialog(livro);
-//	}
-//
-//	public void livroSelecionado(SelectEvent event) {
-//		Livro livro = (Livro) event.getObject();
-//		setLivro(livro);
-//	}
+	public void abrirDialogo() {
+		Map<String, Object> opcoes = new HashMap<>();
+		opcoes.put("modal", true);
+		opcoes.put("resizable", false);
+		opcoes.put("contentHeight", 470);
+
+		RequestContext.getCurrentInstance().openDialog("listaLivros", opcoes,
+				null);
+
+	}
+
+	public void selecionar(Livro livro) {
+		RequestContext.getCurrentInstance().closeDialog(livro);
+	}
+
+	public void livroSelecionado(SelectEvent event) {
+		Livro livro = (Livro) event.getObject();
+		setLivro(livro);
+	}
 }
