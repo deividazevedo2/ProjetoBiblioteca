@@ -10,9 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.SelectEvent;
 
-import br.edu.ifpb.mt.daca.entities.Aluno;
 import br.edu.ifpb.mt.daca.entities.Emprestimo;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 import br.edu.ifpb.mt.daca.service.EmprestimoService;
@@ -74,8 +72,8 @@ public class IndexEmprestimosBean extends ClasseAbstrata {
 
 	public void filtrar() {
 		try {
-			todosEmprestimos = emprestimoService.getAll(isbnLivro,
-					matriculaAluno, false);
+			todosEmprestimos = emprestimoService.getAll(matriculaAluno,
+					isbnLivro, false);
 			emprestimosExpirados = emprestimoService.getAll(null, null, true);
 		} catch (BibliotecaException e) {
 			reportarMensagemDeErro(e.getMessage());
