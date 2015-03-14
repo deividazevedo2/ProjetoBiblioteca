@@ -66,23 +66,23 @@ public class EditarLivroBean extends ClasseAbstrata {
 		this.livro = livro;
 	}
 
-	public void abrirDialogo() {
-		Map<String, Object> opcoes = new HashMap<>();
-		opcoes.put("modal", true);
-		opcoes.put("resizable", false);
-		opcoes.put("contentHeight", 470);
-
-		RequestContext.getCurrentInstance().openDialog("listaLivros", opcoes,
-				null);
-
-	}
-
-	public void selecionar(Livro livro) {
-		RequestContext.getCurrentInstance().closeDialog(livro);
-	}
-
-	public void livroSelecionado(SelectEvent event) {
-		Livro livro = (Livro) event.getObject();
-		setLivro(livro);
-	}
+//	public void abrirDialogo() {
+//		Map<String, Object> opcoes = new HashMap<>();
+//		opcoes.put("modal", true);
+//		opcoes.put("resizable", false);
+//		opcoes.put("contentHeight", 470);
+//
+//		RequestContext.getCurrentInstance().openDialog("listaLivros", opcoes,
+//				null);
+//
+//	}
+//
+//	public void selecionar(Livro livro) {
+//		RequestContext.getCurrentInstance().closeDialog(livro);
+//	}
+//
+//	public void livroSelecionado(SelectEvent event) {
+//		Livro livro = (Livro) event.getObject();
+//		setLivro(livro);
+//	}
 }

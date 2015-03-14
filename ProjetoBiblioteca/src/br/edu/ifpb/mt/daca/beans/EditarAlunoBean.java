@@ -66,23 +66,23 @@ public class EditarAlunoBean extends ClasseAbstrata {
 		this.aluno = aluno;
 	}
 
-	public void abrirDialogo() {
-		Map<String, Object> opcoes = new HashMap<>();
-		opcoes.put("modal", true);
-		opcoes.put("resizable", false);
-		opcoes.put("contentHeight", 470);
-
-		RequestContext.getCurrentInstance().openDialog("listaAlunos", opcoes,
-				null);
-
-	}
-
-	public void selecionar(Aluno aluno) {
-		RequestContext.getCurrentInstance().closeDialog(aluno);
-	}
-
-	public void alunoSelecionado(SelectEvent event) {
-		Aluno aluno = (Aluno) event.getObject();
-		setAluno(aluno);
-	}
+//	public void abrirDialogo() {
+//		Map<String, Object> opcoes = new HashMap<>();
+//		opcoes.put("modal", true);
+//		opcoes.put("resizable", false);
+//		opcoes.put("contentHeight", 470);
+//
+//		RequestContext.getCurrentInstance().openDialog("listaAlunos", opcoes,
+//				null);
+//
+//	}
+//
+//	public void selecionar(Aluno aluno) {
+//		RequestContext.getCurrentInstance().closeDialog(aluno);
+//	}
+//
+//	public void alunoSelecionado(SelectEvent event) {
+//		Aluno aluno = (Aluno) event.getObject();
+//		setAluno(aluno);
+//	}
 }

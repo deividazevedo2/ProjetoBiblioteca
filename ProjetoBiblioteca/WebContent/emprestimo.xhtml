@@ -27,49 +27,28 @@
 		<p:fieldset legend="Empréstimo/Devolução">
 			<h:panelGrid id="camposEmprestimo" columns="2">
 
-				<h:outputText value="Aluno: " for="aluno" />
-				<h:panelGroup>
-					<h:form>
-						<p:inputText id="aluno" value="#{editarAlunoBean.aluno.matricula}" />
-						<p:spacer width="10px" />
-						<p:commandButton icon="ui-icon-search" title="Pesquisar"
-							action="#{editarAlunoBean.abrirDialogo}" process="@this"
-							update="@none">
-							<p:ajax event="dialogReturn"
-								listener="#{editarAlunoBean.alunoSelecionado}" process="@this"
-								update="aluno" />
-						</p:commandButton>
-					</h:form>
-				</h:panelGroup>
+				<h:outputText value="Aluno: " />
+				<p:inputText id="aluno"
+					value="#{emprestimoBean.emprestimo.matriculaAluno}"
+					style="width:250px" />
 
-				<h:outputText value="Livro: " for="livro" />
-				<h:panelGroup>
-					<h:form>
-						<p:inputText id="livro" value="#{editarLivroBean.livro.isbn}" />
-						<p:spacer width="10px" />
-						<p:commandButton icon="ui-icon-search" title="Pesquisar"
-							action="#{editarLivroBean.abrirDialogo}" process="@this"
-							update="@none">
-							<p:ajax event="dialogReturn"
-								listener="#{editarLivroBean.livroSelecionado}" process="@this"
-								update="livro" />
-						</p:commandButton>
-					</h:form>
-				</h:panelGroup>
+				<h:outputText value="Livro: " />
+				<p:inputText id="livro"
+					value="#{emprestimoBean.emprestimo.isbnLivro}" style="width:250px" />
+
+				<br />
+				<h:form>
+					<p:commandButton value="Efetuar empréstimo" icon="ui-icon-cart"
+						action="#{emprestimoBean.efetuarEmprestimo}" />
+					<p:commandButton value="Efetuar devolução"
+						icon="ui-icon-arrowreturnthick-1-w"
+						action="#{emprestimoBean.efetuarDevolucao}" />
+					<p:commandButton id="limparBotao" value="Limpar"
+						update=":camposEmprestimo" process="@this" icon="ui-icon-scissors">
+						<p:resetInput target=":camposEmprestimo" />
+					</p:commandButton>
+				</h:form>
 			</h:panelGrid>
-
-			<br />
-			<h:form>
-				<p:commandButton value="Efetuar empréstimo" icon="ui-icon-cart"
-					action="#{emprestimoBean.efetuarEmprestimo}" />
-				<p:commandButton value="Efetuar devolução"
-					icon="ui-icon-arrowreturnthick-1-w"
-					action="#{emprestimoBean.efetuarDevolucao}" />
-				<p:commandButton id="limparBotao" value="Limpar"
-					update=":camposEmprestimo" process="@this" icon="ui-icon-scissors">
-					<p:resetInput target=":camposEmprestimo" />
-				</p:commandButton>
-			</h:form>
 		</p:fieldset>
 	</ui:define>
 </ui:composition>
