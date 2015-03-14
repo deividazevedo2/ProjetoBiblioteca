@@ -1,15 +1,9 @@
 package br.edu.ifpb.mt.daca.beans;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import org.primefaces.context.RequestContext;
-import org.primefaces.event.SelectEvent;
 
 import br.edu.ifpb.mt.daca.entities.Livro;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
