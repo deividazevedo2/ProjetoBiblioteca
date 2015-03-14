@@ -58,7 +58,7 @@ public class GerenciadorEmprestimo {
 
 	}
 
-	private List<Livro> pegaListaDeLivros(Aluno aluno) {
+	public List<Livro> pegaListaDeLivros(Aluno aluno) {
 		List<Livro> livros = aluno.getLivros();
 		if (livros == null) {
 			livros = new ArrayList<Livro>();
@@ -66,7 +66,7 @@ public class GerenciadorEmprestimo {
 		return livros;
 	}
 
-	private boolean verificaQuantidadeExemplares(Livro livro) {
+	public boolean verificaQuantidadeExemplares(Livro livro) {
 		if (livro.getExemplares() > 1) {
 			return true;
 		}
@@ -74,7 +74,7 @@ public class GerenciadorEmprestimo {
 
 	}
 
-	private boolean verificaParametrosNulos(Object obj1, Object obj2) {
+	public boolean verificaParametrosNulos(Object obj1, Object obj2) {
 		if (obj1 == null || obj2 == null) {
 			return false;
 		}
@@ -82,7 +82,7 @@ public class GerenciadorEmprestimo {
 	}
 
 	@SuppressWarnings("static-access")
-	private void atualizarDatas(Emprestimo emprestimo) {
+	public void atualizarDatas(Emprestimo emprestimo) {
 		GregorianCalendar gc = new GregorianCalendar();
 		emprestimo.setDataEmprestimo(gc.getTime());
 		gc.add(gc.DAY_OF_MONTH, 10);

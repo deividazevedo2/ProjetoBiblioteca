@@ -14,10 +14,6 @@ public class Validador {
 				|| aluno.getTelefone() == null) {
 			return false;
 		}
-		// if (validarMatricula(aluno.getMatricula())) {
-		// return false;
-		// }
-		//
 		return true;
 	}
 
