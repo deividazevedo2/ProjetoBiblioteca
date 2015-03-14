@@ -61,8 +61,8 @@ public class EmprestimoDAO extends DAO {
 		return resultado;
 	}
 
-	public List<Emprestimo> getAll(Long matriculaAluno, Long isbnLivro)
-			throws BibliotecaException {
+	public List<Emprestimo> getAll(Long matriculaAluno, Long isbnLivro,
+			Boolean expirados) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		List<Emprestimo> resultado = null;
 
@@ -74,6 +74,9 @@ public class EmprestimoDAO extends DAO {
 
 		if (isbnLivro != null && !isbnLivro.equals("")) {
 			jpql += " and e.isbnLivro like :isbnLivro";
+		}
+		if (expirados == true) {
+			jpql += " and e.dataDevolucao < curdate() ORDER BY e.dataDevolucao";
 		}
 
 		TypedQuery<Emprestimo> query = em.createQuery(jpql, Emprestimo.class);
@@ -180,7 +183,7 @@ public class EmprestimoDAO extends DAO {
 		}
 		return resultado;
 	}
-	
+
 	public void fazerDevolucao(Long matriculaAluno, Long isbnLivro)
 			throws BibliotecaException {
 		Aluno aluno = alunoDoEmprestimo(matriculaAluno);

@@ -50,13 +50,13 @@ public class EmprestimoService implements Serializable {
 
 	}
 
-	public List<Emprestimo> getAll(Long matriculaAluno, Long isbnLivro)
+	public List<Emprestimo> getAll(Long matriculaAluno, Long isbnLivro, Boolean expirados)
 			throws BibliotecaException {
 		try {
-			return this.emprestimoDao.getAll(matriculaAluno, isbnLivro);
+			return this.emprestimoDao.getAll(matriculaAluno, isbnLivro, expirados);
 		} catch (PersistenceException e) {
 			throw new BibliotecaException(e.getMessage(), e);
 		}
 	}
-
+	
 }

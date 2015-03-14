@@ -20,7 +20,8 @@ public class IndexEmprestimosBean extends ClasseAbstrata {
 	 */
 	private static final long serialVersionUID = -6977557276403647255L;
 
-	private List<Emprestimo> emprestimos;
+	private List<Emprestimo> todosEmprestimos;
+	private List<Emprestimo> emprestimosExpirados;
 
 	@Inject
 	private EmprestimoService emprestimoService;
@@ -50,12 +51,18 @@ public class IndexEmprestimosBean extends ClasseAbstrata {
 	}
 
 	public List<Emprestimo> getEmprestimos() {
-		return emprestimos;
+		return todosEmprestimos;
+	}
+
+	public List<Emprestimo> getEmprestimosExpirados() {
+		return emprestimosExpirados;
 	}
 
 	public void filtrar() {
 		try {
-			emprestimos = emprestimoService.getAll(isbnLivro, matriculaAluno);
+			todosEmprestimos = emprestimoService.getAll(isbnLivro,
+					matriculaAluno, false);
+			emprestimosExpirados = emprestimoService.getAll(null, null, true);
 		} catch (BibliotecaException e) {
 			reportarMensagemDeErro(e.getMessage());
 		}
