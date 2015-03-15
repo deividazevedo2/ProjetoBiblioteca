@@ -113,6 +113,8 @@ public class EmprestimoDAO extends DAO {
 				livros.add(livro2);
 				aluno.setLivros(livros);
 				livro.setExemplares(quantidade - 1);
+				emprestimo.setNomeAluno(aluno.getNome());
+				emprestimo.setNomeLivro(livro.getTitulo());
 				ge.atualizarDatas(emprestimo);
 				alterarLivro(livro);
 				alterarAluno(aluno);

@@ -30,7 +30,13 @@ public class Emprestimo implements Serializable {
 	private Long matriculaAluno;
 
 	@Column
+	private String nomeAluno;
+
+	@Column
 	private Long isbnLivro;
+
+	@Column
+	private String nomeLivro;
 
 	@Column
 	@Temporal(TemporalType.DATE)
@@ -59,12 +65,28 @@ public class Emprestimo implements Serializable {
 		this.matriculaAluno = matriculaAluno;
 	}
 
+	public String getNomeAluno() {
+		return nomeAluno;
+	}
+
+	public void setNomeAluno(String nomeAluno) {
+		this.nomeAluno = nomeAluno;
+	}
+
 	public Long getIsbnLivro() {
 		return isbnLivro;
 	}
 
 	public void setIsbnLivro(Long isbnLivro) {
 		this.isbnLivro = isbnLivro;
+	}
+
+	public String getNomeLivro() {
+		return nomeLivro;
+	}
+
+	public void setNomeLivro(String nomeLivro) {
+		this.nomeLivro = nomeLivro;
 	}
 
 	public Date getDataEmprestimo() {
@@ -134,6 +156,14 @@ public class Emprestimo implements Serializable {
 		} else if (!matriculaAluno.equals(other.matriculaAluno))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Emprestimo [id=" + id + ", matriculaAluno=" + matriculaAluno
+				+ ", nomeAluno=" + nomeAluno + ", isbnLivro=" + isbnLivro
+				+ ", nomeLivro=" + nomeLivro + ", dataEmprestimo="
+				+ dataEmprestimo + ", dataDevolucao=" + dataDevolucao + "]";
 	}
 
 }
