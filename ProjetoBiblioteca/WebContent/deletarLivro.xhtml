@@ -9,7 +9,7 @@
 	xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions">
 
-<ui:composition template="/templates/template.xhtml">
+<ui:composition template="/templates/templateList.xhtml">
 	<f:metadata>
 		<o:viewParam name="livro" value="#{deletarLivroBean.livro}"
 			converter="#{livroConverter}" />
@@ -21,21 +21,26 @@
 	<ui:define name="center">
 		<p:growl id="messages" autoUpdate="true" showDetail="true"
 			showSummary="true" />
-		<h:form>
-			<p:panelGrid columns="1">
-				<f:facet name="header">
+		<p:spacer height="250" />
+		<center>
+			<h:form>
+				<p:panelGrid columns="1">
+					<f:facet name="header">
 				Confirmação!
 			</f:facet>
-				<h:outputLabel
-					value="Você quer deletar '#{deletarLivroBean.livro.titulo}'?" />
-				<f:facet name="footer">
-					<p:commandButton action="#{deletarLivroBean.deletar}"
-						value="Deletar" icon="ui-icon-close" />
-					<p:commandButton action="#{deletarLivroBean.cancel}"
-						value="Cancelar" icon="ui-icon-cancel" />
-				</f:facet>
-			</p:panelGrid>
-		</h:form>
+					<h:outputLabel
+						value="Você quer deletar #{deletarLivroBean.livro.titulo}?" />
+					<h:form>
+						<center>
+							<p:commandButton action="#{deletarLivroBean.deletar}"
+								value="Deletar" icon="ui-icon-close" />
+							<p:commandButton action="#{deletarLivroBean.cancel}"
+								value="Cancelar" icon="ui-icon-cancel" />
+						</center>
+					</h:form>
+				</p:panelGrid>
+			</h:form>
+		</center>
 	</ui:define>
 </ui:composition>
 </html>

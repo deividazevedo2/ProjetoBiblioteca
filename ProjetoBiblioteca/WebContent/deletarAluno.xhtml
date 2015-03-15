@@ -21,21 +21,26 @@
 	<ui:define name="center">
 		<p:growl id="messages" autoUpdate="true" showDetail="true"
 			showSummary="true" />
-		<h:form>
-			<p:panelGrid columns="1">
-				<f:facet name="header">
+		<p:spacer height="250" />
+		<center>
+			<h:form>
+				<p:panelGrid columns="1">
+					<f:facet name="header">
 				Confirmação!
 			</f:facet>
-				<h:outputLabel
-					value="Você quer deletar '#{deletarAlunoBean.aluno.nome}'?" />
-				<f:facet name="footer">
-					<p:commandButton action="#{deletarAlunoBean.deletar}"
-						value="Deletar" icon="ui-icon-close" />
-					<p:commandButton action="#{deletarAlunoBean.cancel}"
-						value="Cancelar" icon="ui-icon-cancel" />
-				</f:facet>
-			</p:panelGrid>
-		</h:form>
+					<h:outputLabel
+						value="Você quer deletar #{deletarAlunoBean.aluno.nome}?" />
+					<h:form>
+						<center>
+							<p:commandButton action="#{deletarAlunoBean.deletar}"
+								value="Deletar" icon="ui-icon-close" />
+							<p:commandButton action="#{deletarAlunoBean.cancel}"
+								value="Cancelar" icon="ui-icon-cancel" />
+						</center>
+					</h:form>
+				</p:panelGrid>
+			</h:form>
+		</center>
 	</ui:define>
 </ui:composition>
 </html>

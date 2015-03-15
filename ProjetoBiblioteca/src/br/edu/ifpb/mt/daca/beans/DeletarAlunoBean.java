@@ -50,7 +50,7 @@ public class DeletarAlunoBean extends ClasseAbstrata {
 
 	public String cancel() {
 		conversation.end();
-		return "index?faces-redirect=true";
+		return "alunos?faces-redirect=true";
 	}
 
 	public Aluno getAluno() {

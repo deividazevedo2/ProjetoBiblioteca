@@ -45,7 +45,7 @@ public class EmprestimoBean extends ClasseAbstrata {
 			return null;
 		}
 
-		return "emprestimo.xhtml?faces-redirect=true";
+		return "emprestimos?faces-redirect=true";
 	}
 
 	public String efetuarDevolucao() {
@@ -54,14 +54,14 @@ public class EmprestimoBean extends ClasseAbstrata {
 			if (emprestimo.getIsbnLivro() != null
 					&& emprestimo.getMatriculaAluno() != null) {
 				emprestimoService.fazerDevolucao(emprestimo);
-				reportarMensagemDeSucesso("Empréstimo realizado com sucesso!");
+				reportarMensagemDeSucesso("Devolução realizada com sucesso!");
 			}
 		} catch (BibliotecaException e) {
 			reportarMensagemDeErro(e.getMessage());
 			return null;
 		}
 
-		return "emprestimo.xhtml?faces-redirect=true";
+		return "emprestimos?faces-redirect=true";
 	}
 
 	public Emprestimo getEmprestimo() {

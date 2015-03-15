@@ -48,7 +48,7 @@ public class DeletarLivroBean extends ClasseAbstrata {
 
 	public String cancel() {
 		conversation.end();
-		return "index?faces-redirect=true";
+		return "livros?faces-redirect=true";
 	}
 
 	public Livro getLivro() {
