@@ -41,7 +41,6 @@ public class EmprestimoDAO extends DAO {
 		try {
 			fazerDevolucao(emprestimo.getMatriculaAluno(),
 					emprestimo.getIsbnLivro());
-			em.remove(emprestimo);
 		} catch (BibliotecaException e) {
 			throw new BibliotecaException("Erro ao fazer a devolução", e);
 		}
@@ -114,7 +113,7 @@ public class EmprestimoDAO extends DAO {
 				aluno.setLivros(livros);
 				livro.setExemplares(quantidade - 1);
 				emprestimo.setNomeAluno(aluno.getNome());
-				emprestimo.setNomeLivro(livro.getTitulo());
+				emprestimo.setNomeLivro(livro2.getTitulo());
 				ge.atualizarDatas(emprestimo);
 				alterarLivro(livro);
 				alterarAluno(aluno);
@@ -204,6 +203,15 @@ public class EmprestimoDAO extends DAO {
 			aluno.setLivros(livros);
 			alterarLivro(livro);
 			alterarAluno(aluno);
+			remover(aluno.getMatricula(), livro.getIsbn(), false);
+		}
+	}
+
+	private void remover(Long matriculaAluno, Long isbnLivro, Boolean condicao)
+			throws BibliotecaException {
+		List<Emprestimo> e = getAll(matriculaAluno, isbnLivro, condicao);
+		for (Emprestimo emprestimo : e) {
+			em.remove(emprestimo);
 		}
 
 	}
