@@ -34,14 +34,21 @@
 							icon="ui-icon-home" />
 
 						<p:menuitem value="Usuários"
-							outcome="/faces/paginas/usuarios.xhtml"
-							icon="ui-icon-person" />
+							outcome="/faces/paginas/usuarios.xhtml" icon="ui-icon-person" />
 
 						<p:menuitem value="Sobre" outcome="/faces/paginas/sobre.xhtml"
 							icon="ui-icon-info" />
 						<p:menuitem value="Logout" action="#{logoutBean.efetuarLogout}"
 							icon="ui-icon-extlink" />
+
+						<f:facet name="options">
+							<p:commandButton style="margin-right:10px"
+								value="Empréstimos Expirados" icon="ui-icon-alert"
+								action="#{indexEmprestimosBean.abrirDialogo}" process="@this"
+								update="@none" />
+						</f:facet>
 					</p:menubar>
+
 				</h:form>
 
 			</p:layoutUnit>

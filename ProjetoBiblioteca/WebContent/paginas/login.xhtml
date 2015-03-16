@@ -14,22 +14,30 @@
 	<ui:define name="center">
 		<p:growl id="messages" autoUpdate="true" showDetail="true"
 			showSummary="true" />
-
-		<p:panel header="Login" style="width : 100%; text-align:center">
-			<!-- <form method="post" action="j_security_check"> -->
-			<h:form id="login" prependId="false"
-				onsubmit="action='j_security_check';">
+		<center>
+			<p:panel style="width : 99%; text-align:center">
+				<p:spacer height="80px" />
+				<center>
+					<img src="../cats.jpg" height="180px" width="200px" />
+				</center>
+				<p:spacer height="10px" />
+				<!-- <form method="post" action="j_security_check"> -->
+				<h:form id="login" prependId="false"
+					onsubmit="action='j_security_check';">
+					<p:spacer width="1.5px" />
 				Login: <input type="text" name="j_username" />
-				<br />
-				<br />
+					<br />
+					<br />
 				Senha: <input type="password" name="j_password" />
-				<br />
-				<br />
-				<input type="submit" value="Entrar" />
-				<input type="reset" value="Limpar" />
-				<!-- </form> -->
-			</h:form>
-		</p:panel>
+					<br />
+					<br />
+					<input type="submit" value="Entrar" />
+					<input type="reset" value="Limpar" />
+					<!-- </form> -->
+				</h:form>
+				<p:spacer height="180px" />
+			</p:panel>
+		</center>
 	</ui:define>
 </ui:composition>
 
