@@ -14,7 +14,6 @@
 		<navigation-handler>org.primefaces.application.DialogNavigationHandler</navigation-handler>
 		<view-handler>org.primefaces.application.DialogViewHandler</view-handler>
 	</application>
-
 	<lifecycle>
 		<phase-listener>br.edu.ifpb.mt.daca.util.MessageHandler</phase-listener>
 	</lifecycle>

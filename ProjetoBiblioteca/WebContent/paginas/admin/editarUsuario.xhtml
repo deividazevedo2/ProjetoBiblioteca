@@ -38,15 +38,15 @@
 
 					<p:outputLabel value="Login: " />
 					<p:inputText id="login" value="#{userEditBean.user.login}"
-						style="width:250px" />
+						style="width:250px" required="true" />
 
 					<p:outputLabel value="Nome: " />
 					<p:inputText id="firstName" value="#{userEditBean.user.firstName}"
-						style="width:250px" />
+						style="width:250px" required="true" />
 
 					<p:outputLabel value="Sobrenome: " />
 					<p:inputText id="lastName" value="#{userEditBean.user.lastName}"
-						style="width:250px" />
+						style="width:250px" required="true" />
 
 					<p:outputLabel value="Aniversário: " />
 					<ui:include src="/templates/_calendario.xhtml">
@@ -58,18 +58,20 @@
 
 					<p:outputLabel value="Email: " />
 					<p:inputText id="email" value="#{userEditBean.user.email}"
-						style="width:250px" />
+						style="width:250px" required="true" />
 
 					<p:outputLabel value="Grupo: " />
 					<p:selectOneMenu id="grupo" value="#{userEditBean.user.grupo}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{userEditBean.grupos}" var="grupoUsuario"
-							itemLabel="#{grupoUsuario}" itemValue="#{grupoUsuario}" />
+							itemLabel="#{grupoUsuario}" itemValue="#{grupoUsuario}"
+							required="true" />
 					</p:selectOneMenu>
 
 					<p:outputLabel value="Senha: " />
 					<p:password id="senha" value="#{userEditBean.user.password}"
-						feedback="true" redisplay="true" style="width:250px" />
+						feedback="true" redisplay="true" style="width:250px"
+						required="true" />
 					<br />
 					<br />
 					<f:facet name="footer">

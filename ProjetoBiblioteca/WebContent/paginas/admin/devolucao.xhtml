@@ -25,6 +25,7 @@
 	<ui:define name="center">
 		<p:growl id="messages" autoUpdate="true" showDetail="true"
 			showSummary="true" />
+			
 		<h:form>
 			<p:fieldset legend="Empréstimo/Devolução">
 				<h:panelGrid id="camposEmprestimo" columns="2">
@@ -32,7 +33,8 @@
 					<h:outputText value="Aluno: " for="aluno" />
 					<h:panelGroup>
 						<p:inputText id="aluno"
-							value="#{emprestimoBean.emprestimo.matriculaAluno}" />
+							value="#{emprestimoBean.emprestimo.matriculaAluno}"
+							required="true" />
 						<p:spacer width="10px" />
 						<p:commandButton icon="ui-icon-search" title="Pesquisar"
 							action="#{editarAlunoBean.abrirDialogo}" process="@this"
@@ -46,7 +48,7 @@
 					<h:outputText value="Livro: " for="livro" />
 					<h:panelGroup>
 						<p:inputText id="livro"
-							value="#{emprestimoBean.emprestimo.isbnLivro}" />
+							value="#{emprestimoBean.emprestimo.isbnLivro}" required="true" />
 						<p:spacer width="10px" />
 						<p:commandButton icon="ui-icon-search" title="Pesquisar"
 							action="#{editarLivroBean.abrirDialogo}" process="@this"

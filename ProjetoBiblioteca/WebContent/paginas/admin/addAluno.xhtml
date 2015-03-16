@@ -23,6 +23,7 @@
 	</ui:define>
 
 	<ui:define name="center">
+	
 		<p:growl id="messages" autoUpdate="true" showDetail="true"
 			showSummary="true" />
 
@@ -39,19 +40,20 @@
 
 					<h:outputText value="Nome: " />
 					<p:inputText id="nome" value="#{editarAlunoBean.aluno.nome}"
-						style="width:250px" />
+						style="width:250px" required="true" />
 
 					<h:outputText value="Curso: " />
 					<p:inputText id="curso" value="#{editarAlunoBean.aluno.curso}"
-						style="width:250px" />
+						style="width:250px" required="true" />
 
 					<h:outputText value="CPF: " />
 					<p:inputMask id="cpf" value="#{editarAlunoBean.aluno.cpf}"
-						mask="999.999.999-99" style="width:250px" />
+						mask="999.999.999-99" style="width:250px" required="true" />
 
 					<h:outputText value="Matrícula: " />
 					<p:inputText id="matricula"
-						value="#{editarAlunoBean.aluno.matricula}" style="width:250px" />
+						value="#{editarAlunoBean.aluno.matricula}" style="width:250px"
+						required="true" />
 
 					<h:outputText value="Telefone: " />
 					<p:inputMask id="telefone"

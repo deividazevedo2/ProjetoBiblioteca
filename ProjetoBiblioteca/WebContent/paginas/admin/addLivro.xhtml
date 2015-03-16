@@ -39,7 +39,7 @@
 
 					<h:outputText value="Título: " />
 					<p:inputText id="titulo" value="#{editarLivroBean.livro.titulo}"
-						style="width:250px" />
+						style="width:250px" required="true" />
 
 					<h:outputText value="Descrição: " />
 					<p:inputText id="descricao"
@@ -47,15 +47,16 @@
 
 					<h:outputText value="ISBN: " />
 					<p:inputText id="isbn" value="#{editarLivroBean.livro.isbn}"
-						style="width:250px" />
+						style="width:250px" required="true" />
 
 					<h:outputText value="Exemplares: " />
 					<p:inputText id="exemplares"
-						value="#{editarLivroBean.livro.exemplares}" style="width:250px" />
+						value="#{editarLivroBean.livro.exemplares}" style="width:250px"
+						required="true" />
 
 					<h:outputText value="Editora: " />
 					<p:inputText id="editora" value="#{editarLivroBean.livro.editora}"
-						style="width:250px" />
+						style="width:250px" required="true" />
 					<br />
 					<br />
 
