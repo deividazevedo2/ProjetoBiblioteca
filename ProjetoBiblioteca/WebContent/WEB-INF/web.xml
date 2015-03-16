@@ -18,8 +18,63 @@
 		</param-name>
 		<param-value>true</param-value>
 	</context-param>
+	
 	<context-param>
-		<param-name>com.sun.faces.writeStateAtFormEnd</param-name>
-		<param-value>false</param-value>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
 	</context-param>
+	<welcome-file-list>
+		<welcome-file>/paginas/index.xhtml</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/faces/paginas/403.xhtml</location>
+	</error-page>
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>projetobibliotecaJdbcRealm</realm-name>
+		<form-login-config>
+			<form-login-page>/faces/paginas/login.xhtml</form-login-page>
+			<form-error-page>/faces/paginas/loginerror.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+	<security-constraint>
+		<display-name>Páginas do administrador</display-name>
+		<web-resource-collection>
+			<web-resource-name>Área protegida do administrador</web-resource-name>
+			<description></description>
+			<url-pattern>/faces/paginas/admin/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>PUT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description />
+			<role-name>ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<display-name>Acesso permitido a todos</display-name>
+		<web-resource-collection>
+			<web-resource-name>Área não protegida</web-resource-name>
+			<description />
+			<url-pattern>/faces/paginas/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>PUT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description />
+			<role-name>ADMIN</role-name>
+			<role-name>VISITANTE</role-name>
+		</auth-constraint>
+	</security-constraint>
 </web-app>

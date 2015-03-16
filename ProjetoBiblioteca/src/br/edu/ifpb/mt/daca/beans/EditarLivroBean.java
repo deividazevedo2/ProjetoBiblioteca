@@ -55,7 +55,7 @@ public class EditarLivroBean extends ClasseAbstrata {
 			return null;
 		}
 
-		return "livros.xhtml?faces-redirect=true";
+		return EnderecoPaginas.PAGINA_PRINCIPAL_LIVROS;
 	}
 
 	public Livro getLivro() {

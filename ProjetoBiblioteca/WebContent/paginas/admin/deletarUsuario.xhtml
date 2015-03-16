@@ -11,11 +11,11 @@
 
 <ui:composition template="/templates/templateList.xhtml">
 	<f:metadata>
-		<o:viewParam name="aluno" value="#{deletarAlunoBean.aluno}"
-			converter="#{alunoConverter}" />
+		<o:viewParam name="user" value="#{userDeleteBean.user}"
+			converter="#{userConverter}" />
 	</f:metadata>
 	<ui:define name="title">
-		Deletar aluno
+		Biblioteca - Deletar Usuário
 	</ui:define>
 
 	<ui:define name="center">
@@ -29,12 +29,12 @@
 				Confirmação!
 			</f:facet>
 					<h:outputLabel
-						value="Você quer deletar #{deletarAlunoBean.aluno.nome}?" />
+						value="Você quer deletar #{userDeleteBean.user.firstName} #{userDeleteBean.user.lastName}?" />
 					<h:form>
 						<center>
-							<p:commandButton action="#{deletarAlunoBean.deletar}"
+							<p:commandButton action="#{userDeleteBean.delete}"
 								value="Deletar" icon="ui-icon-close" />
-							<p:commandButton action="#{deletarAlunoBean.cancel}"
+							<p:commandButton action="#{userDeleteBean.cancel}"
 								value="Cancelar" icon="ui-icon-cancel" />
 						</center>
 					</h:form>
@@ -43,4 +43,5 @@
 		</center>
 	</ui:define>
 </ui:composition>
+
 </html>

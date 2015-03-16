@@ -55,7 +55,7 @@ public class EditarAlunoBean extends ClasseAbstrata {
 			return null;
 		}
 
-		return "alunos.xhtml?faces-redirect=true";
+		return EnderecoPaginas.PAGINA_PRINCIPAL_ALUNOS;
 	}
 
 	public Aluno getAluno() {

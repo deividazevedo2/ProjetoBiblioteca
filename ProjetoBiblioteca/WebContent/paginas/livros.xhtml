@@ -10,24 +10,24 @@
 <ui:composition template="/templates/template.xhtml">
 
 	<ui:define name="title">
-	Biblioteca - Alunos
+	Biblioteca - Livros
 	</ui:define>
 
 	<ui:define name="center">
 		<p:growl id="messages" autoUpdate="true" showDetail="true"
 			showSummary="true" />
-		<p:fieldset legend="Alunos">
+		<p:fieldset legend="Livros">
 			<h:form id="camposFiltro">
-				<h:outputText value="Nome do aluno: " />
-				<p:inputText id="nomeFiltro" value="#{indexBean.nomeAluno}"
+				<h:outputText value="Título do livro: " />
+				<p:inputText id="nomeFiltro" value="#{indexLivroBean.nomeLivro}"
 					style="width:250px" />
-				<h:outputText value=" Matrícula do aluno: " />
-				<p:inputText id="matriculaFiltro"
-					value="#{indexBean.matriculaAluno}" style="width:250px" />
+				<h:outputText value=" ISBN do livro: " />
+				<p:inputText id="isbnFiltro" value="#{indexLivroBean.isbnLivro}"
+					style="width:250px" />
 				<br />
 				<br />
 				<p:commandButton value="Filtrar" id="filtrarBotao"
-					update=":idTabela" action="#{indexBean.filtrar}"
+					update=":idTabela" action="#{indexLivroBean.filtrar}"
 					icon="ui-icon-search" />
 				<p:commandButton id="limparBotao" value="Limpar"
 					update="camposFiltro" process="@this" icon="ui-icon-close">
@@ -35,45 +35,41 @@
 				</p:commandButton>
 			</h:form>
 			<br />
-			<p:dataTable id="idTabela" var="aluno" value="#{indexBean.alunos}"
-				emptyMessage="Nenhum registro encontrado." paginator="true" rows="6"
-				style="text-align: center">
+			<p:dataTable id="idTabela" var="livro"
+				value="#{indexLivroBean.livros}"
+				emptyMessage="Nenhum registro encontrado."
+				style="text-align: center" paginator="true" rows="6">
 
-				<p:column headerText="Matrícula">
-					<h:outputText value="#{aluno.matricula}" />
+				<p:column headerText="ISBN">
+					<h:outputText value="#{livro.isbn}" />
 				</p:column>
 
-				<p:column headerText="Nome">
-					<h:outputText value="#{aluno.nome}" />
+				<p:column headerText="Título">
+					<h:outputText value="#{livro.titulo}" />
 				</p:column>
 
-				<p:column headerText="Curso">
-					<h:outputText value="#{aluno.curso}" />
+				<p:column headerText="Exemplares">
+					<h:outputText value="#{livro.exemplares}" />
 				</p:column>
 
-				<p:column headerText="CPF">
-					<h:outputText value="#{aluno.cpf}" />
-				</p:column>
-
-				<p:column headerText="Livros">
-					<h:outputText value="#{aluno.livros}" />
+				<p:column headerText="Autores">
+					<h:outputText value="#{livro.autores}" />
 				</p:column>
 
 				<p:column headerText="Editar">
-					<p:link outcome="addAluno.xhtml" value="Editar Aluno">
-						<f:param name="aluno" value="#{aluno.id}" />
+					<p:link outcome="/paginas/admin/addLivro.xhtml" value="Editar Livro">
+						<f:param name="livro" value="#{livro.id}" />
 					</p:link>
 				</p:column>
 
 				<p:column headerText="Deletar">
-					<p:link outcome="deletarAluno.xhtml" value="Deletar Aluno">
-						<f:param name="aluno" value="#{aluno.id}" />
+					<p:link outcome="/paginas/admin/deletarLivro.xhtml" value="Deletar Livro">
+						<f:param name="livro" value="#{livro.id}" />
 					</p:link>
 				</p:column>
-
 			</p:dataTable>
 			<br />
-			<p:button value="Novo Aluno" outcome="addAluno.xhtml"
+			<p:button value="Novo Livro" outcome="/paginas/admin/addLivro.xhtml"
 				icon="ui-icon-plus" />
 		</p:fieldset>
 	</ui:define>

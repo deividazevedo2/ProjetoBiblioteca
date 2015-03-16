@@ -3,60 +3,59 @@ package br.edu.ifpb.mt.daca.beans;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifpb.mt.daca.entities.Livro;
+import br.edu.ifpb.mt.daca.entities.User;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
-import br.edu.ifpb.mt.daca.service.LivroService;
+import br.edu.ifpb.mt.daca.service.UserService;
 
 @Named
 @ConversationScoped
-public class DeletarLivroBean extends ClasseAbstrata {
-
+public class UserDeleteBean extends ClasseAbstrata {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7274557542385371855L;
+	private static final long serialVersionUID = -2914307108338043685L;
 
-	private Livro livro;
+	private User user;
 
-	@Inject
-	private LivroService livroService;
+	@Inject @RequestScoped
+	private UserService userService;
 
 	@Inject
 	private Conversation conversation;
-
+	
 	@PostConstruct
 	public void init() {
 		if (conversation.isTransient()) {
 			conversation.begin();
 		}
 	}
-
-	public String deletar() {
+	
+	public String delete() {
 		try {
 			conversation.end();
-			livroService.excluirLivro(livro);
-			reportarMensagemDeSucesso("Livro removido com sucesso!");
+			userService.delete(user);
+			reportarMensagemDeSucesso("Usuário removido com sucesso!");
 		} catch (BibliotecaException e) {
 			reportarMensagemDeErro(e.getMessage());
 			return null;
 		}
-		return EnderecoPaginas.PAGINA_PRINCIPAL_LIVROS;
+		return EnderecoPaginas.PAGINA_PRINCIPAL_USUARIOS;
 	}
 
 	public String cancel() {
 		conversation.end();
-		return EnderecoPaginas.PAGINA_PRINCIPAL_LIVROS;
+		return EnderecoPaginas.PAGINA_PRINCIPAL_USUARIOS;
 	}
 
-	public Livro getLivro() {
-		return livro;
+	public User getUser() {
+		return user;
 	}
 
-	public void setLivro(Livro livro) {
-		this.livro = livro;
+	public void setUser(User user) {
+		this.user = user;
 	}
-
 }

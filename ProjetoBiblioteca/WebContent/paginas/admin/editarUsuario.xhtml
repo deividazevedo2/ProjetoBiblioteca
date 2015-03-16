@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<f:metadata>
+		<o:viewParam name="user" value="#{userEditBean.user}"
+			converter="#{userConverter}" />
+		<f:event listener="#{userEditBean.preRenderView()}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="title">
+		Biblioteca - Criar/Editar Usuário
+	</ui:define>
+
+	<ui:define name="center">
+		<p:growl id="messages" autoUpdate="true" showDetail="true"
+			showSummary="true" />
+
+		<h:form>
+			<p:fieldset legend="Criar/Editar Usuário">
+				<h:panelGrid id="camposUsuario" columns="2"
+					value="#{userEditBean.users}"
+					emptyMessage="Nenhum registro encontrado.">
+
+					<p:outputLabel value="Id" rendered="#{!empty userEditBean.user.id}" />
+					<p:outputLabel value="#{userEditBean.user.id}"
+						rendered="#{!empty userEditBean.user.id}" />
+
+					<p:outputLabel value="Login: " />
+					<p:inputText id="login" value="#{userEditBean.user.login}"
+						style="width:250px" />
+
+					<p:outputLabel value="Nome: " />
+					<p:inputText id="firstName" value="#{userEditBean.user.firstName}"
+						style="width:250px" />
+
+					<p:outputLabel value="Sobrenome: " />
+					<p:inputText id="lastName" value="#{userEditBean.user.lastName}"
+						style="width:250px" />
+
+					<p:outputLabel value="Aniversário: " />
+					<ui:include src="/templates/_calendario.xhtml">
+						<ui:param name="id" value="birthDay" />
+						<ui:param name="required" value="true" />
+						<ui:param name="value" value="#{userEditBean.user.birthday}" />
+						<ui:param name="name" value="Birthday" />
+					</ui:include>
+
+					<p:outputLabel value="Email: " />
+					<p:inputText id="email" value="#{userEditBean.user.email}"
+						style="width:250px" />
+
+					<p:outputLabel value="Grupo: " />
+					<p:selectOneMenu id="grupo" value="#{userEditBean.user.grupo}">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{userEditBean.grupos}" var="grupoUsuario"
+							itemLabel="#{grupoUsuario}" itemValue="#{grupoUsuario}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Senha: " />
+					<p:password id="senha" value="#{userEditBean.user.password}"
+						feedback="true" redisplay="true" style="width:250px" />
+					<br />
+					<br />
+					<f:facet name="footer">
+						<p:commandButton action="#{userEditBean.saveUser}" value="Salvar"
+							icon="ui-icon-check" />
+						<p:commandButton id="limparBotao" value="Limpar"
+							update="camposUsuario" process="@this" icon="ui-icon-close">
+							<p:resetInput target="camposUsuario" />
+						</p:commandButton>
+						<p:button outcome="/paginas/usuarios.xhtml" value="Cancelar"
+							icon="ui-icon-cancel" />
+					</f:facet>
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

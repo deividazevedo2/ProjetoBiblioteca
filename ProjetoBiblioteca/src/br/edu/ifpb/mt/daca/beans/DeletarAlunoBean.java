@@ -45,12 +45,12 @@ public class DeletarAlunoBean extends ClasseAbstrata {
 			reportarMensagemDeErro(e.getMessage());
 			return null;
 		}
-		return "alunos?faces-redirect=true";
+		return EnderecoPaginas.PAGINA_PRINCIPAL_ALUNOS;
 	}
 
 	public String cancel() {
 		conversation.end();
-		return "alunos?faces-redirect=true";
+		return EnderecoPaginas.PAGINA_PRINCIPAL_ALUNOS;
 	}
 
 	public Aluno getAluno() {

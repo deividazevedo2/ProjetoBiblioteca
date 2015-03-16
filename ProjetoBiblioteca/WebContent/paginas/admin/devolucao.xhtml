@@ -19,7 +19,7 @@
 	</f:metadata>
 
 	<ui:define name="title">
-	Biblioteca - Novo Empréstimo
+	Biblioteca - Devolução
 	</ui:define>
 
 	<ui:define name="center">
@@ -59,12 +59,15 @@
 
 					<br />
 					<f:facet name="footer">
-						<p:commandButton value="Efetuar empréstimo" icon="ui-icon-cart"
-							action="#{emprestimoBean.efetuarEmprestimo}" />
+						<p:commandButton value="Efetuar devolução"
+							icon="ui-icon-arrowreturnthick-1-w"
+							action="#{emprestimoBean.efetuarDevolucao}" />
 						<p:commandButton id="limparBotao" value="Limpar"
 							update="camposEmprestimo" process="@this" icon="ui-icon-close">
 							<p:resetInput target="camposEmprestimo" />
 						</p:commandButton>
+						<p:button outcome="/paginas/emprestimos.xhtml" value="Cancelar"
+							icon="ui-icon-cancel" />
 					</f:facet>
 				</h:panelGrid>
 			</p:fieldset>

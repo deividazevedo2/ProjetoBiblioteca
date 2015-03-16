@@ -13,7 +13,7 @@ import br.edu.ifpb.mt.daca.service.AlunoService;
 
 @Named
 @RequestScoped
-public class IndexBean extends ClasseAbstrata {
+public class IndexAlunoBean extends ClasseAbstrata {
 
 	/**
 	 * 

@@ -45,7 +45,7 @@ public class EmprestimoBean extends ClasseAbstrata {
 			return null;
 		}
 
-		return "emprestimos?faces-redirect=true";
+		return EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS;
 	}
 
 	public String efetuarDevolucao() {
@@ -61,7 +61,7 @@ public class EmprestimoBean extends ClasseAbstrata {
 			return null;
 		}
 
-		return "emprestimos?faces-redirect=true";
+		return EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS;
 	}
 
 	public Emprestimo getEmprestimo() {

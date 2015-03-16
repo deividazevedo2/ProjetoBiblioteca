@@ -19,7 +19,7 @@
 	</f:metadata>
 
 	<ui:define name="title">
-	Biblioteca - Novo Livro
+	Biblioteca - Criar/Editar Livro
 	</ui:define>
 
 	<ui:define name="center">
@@ -27,7 +27,7 @@
 			showSummary="true" />
 
 		<h:form>
-			<p:fieldset legend="Novo Livro">
+			<p:fieldset legend="Criar/Editar Livro">
 				<h:panelGrid id="camposLivro" columns="2"
 					value="#{editarLivroBean.livros}"
 					emptyMessage="Nenhum registro encontrado.">
@@ -68,6 +68,8 @@
 							update="camposLivro" process="@this" icon="ui-icon-close">
 							<p:resetInput target="camposLivro" />
 						</p:commandButton>
+						<p:button outcome="/paginas/livros.xhtml" value="Cancelar"
+							icon="ui-icon-cancel" />
 					</f:facet>
 				</h:panelGrid>
 			</p:fieldset>

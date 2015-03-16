@@ -19,7 +19,7 @@
 	</f:metadata>
 
 	<ui:define name="title">
-	Biblioteca - Novo Aluno
+	Biblioteca - Criar/Editar Aluno
 	</ui:define>
 
 	<ui:define name="center">
@@ -95,6 +95,8 @@
 							update="camposAluno" process="@this" icon="ui-icon-close">
 							<p:resetInput target="camposAluno" />
 						</p:commandButton>
+						<p:button outcome="/paginas/alunos.xhtml" value="Cancelar"
+							icon="ui-icon-cancel" />
 					</f:facet>
 				</h:panelGrid>
 			</p:fieldset>

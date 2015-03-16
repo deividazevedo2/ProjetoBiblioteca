@@ -28,14 +28,21 @@
 		<p:layout fullPage="true">
 			<p:layoutUnit id="top" position="north" size="50">
 
-				<p:menubar>
-					<p:menuitem value="Home" url="index.xhtml" icon="ui-icon-home" />
+				<h:form>
+					<p:menubar>
+						<p:menuitem value="Home" url="/faces/paginas/index.xhtml"
+							icon="ui-icon-home" />
 
-					<p:menuitem value="Sobre" outcome="sobre.xhtml" icon="ui-icon-info" />
+						<p:menuitem value="Usuários"
+							outcome="/faces/paginas/usuarios.xhtml"
+							icon="ui-icon-person" />
 
-					<p:menuitem value="Logout" outcome="index.xhtml"
-						icon="ui-icon-extlink" />
-				</p:menubar>
+						<p:menuitem value="Sobre" outcome="/faces/paginas/sobre.xhtml"
+							icon="ui-icon-info" />
+						<p:menuitem value="Logout" action="#{logoutBean.efetuarLogout}"
+							icon="ui-icon-extlink" />
+					</p:menubar>
+				</h:form>
 
 			</p:layoutUnit>
 
@@ -50,9 +57,10 @@
 			<p:layoutUnit id="left" position="west" size="300" resizable="false"
 				closable="false" collapsible="true" header="Menu" minSize="200">
 				<p:menu style="width: 280px">
-					<p:menuitem value="Alunos" url="alunos.xhtml" />
-					<p:menuitem value="Livros" url="livros.xhtml" />
-					<p:menuitem value="Empréstimos" url="emprestimos.xhtml" />
+					<p:menuitem value="Alunos" url="/faces/paginas/alunos.xhtml" />
+					<p:menuitem value="Livros" url="/faces/paginas/livros.xhtml" />
+					<p:menuitem value="Empréstimos"
+						url="/faces/paginas/emprestimos.xhtml" />
 				</p:menu>
 			</p:layoutUnit>
 
