@@ -106,7 +106,7 @@ public class Livro implements Serializable {
 
 	@Override
 	public String toString() {
-		return isbn + ", " + titulo;
+		return isbn + ", " + titulo + ";";
 	}
 
 	@Override
