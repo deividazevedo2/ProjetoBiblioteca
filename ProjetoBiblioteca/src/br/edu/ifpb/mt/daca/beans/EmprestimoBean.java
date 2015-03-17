@@ -58,6 +58,15 @@ public class EmprestimoBean extends ClasseAbstrata {
 		return EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS;
 	}
 
+	public void pagarAgora() {
+		
+	}
+	
+	public void pagarDepois() {
+		
+	}
+
+	
 	public void confirmaSaldoDevedor(Emprestimo emp) {
 		try {
 			emprestimo = emprestimoService.capturaEmprestimo(emp);
