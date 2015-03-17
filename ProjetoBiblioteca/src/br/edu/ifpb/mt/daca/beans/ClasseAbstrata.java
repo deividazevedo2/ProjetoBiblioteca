@@ -36,7 +36,7 @@ public class ClasseAbstrata implements Serializable {
 
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext()
 				.getFlash();
-		flash.setKeepMessages(true);
+		flash.setKeepMessages(false);
 		flash.setRedirect(true);
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
