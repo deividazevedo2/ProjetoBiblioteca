@@ -3,8 +3,7 @@ package br.edu.ifpb.mt.daca.beans;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,7 +17,8 @@ import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 import br.edu.ifpb.mt.daca.service.EmprestimoService;
 
 @Named
-@ConversationScoped
+// @ConversationScoped
+@SessionScoped
 public class EmprestimoBean extends ClasseAbstrata {
 
 	private static final long serialVersionUID = -79727005056917194L;
@@ -30,20 +30,20 @@ public class EmprestimoBean extends ClasseAbstrata {
 	@Inject
 	private EmprestimoService emprestimoService;
 
-	@Inject
-	private Conversation conversation;
+	// @Inject
+	// private Conversation conversation;
 
 	public void preRenderView() {
 		if (emprestimo == null) {
 			emprestimo = new Emprestimo();
 		}
-		if (conversation.isTransient()) {
-			conversation.begin();
-		}
+		// if (conversation.isTransient()) {
+		// conversation.begin();
+		// }
 	}
 
 	public String efetuarEmprestimo() {
-		conversation.end();
+		// conversation.end();
 		try {
 			if (emprestimo.getIsbnLivro() != null
 					&& emprestimo.getMatriculaAluno() != null) {
@@ -59,6 +59,7 @@ public class EmprestimoBean extends ClasseAbstrata {
 	}
 
 	public String pagarAgora() {
+		// conversation.end();
 		try {
 			emprestimoService.fazerDevolucao(emprestimo, false);
 		} catch (BibliotecaException e) {
@@ -70,6 +71,7 @@ public class EmprestimoBean extends ClasseAbstrata {
 	}
 
 	public String pagarDepois() {
+		// conversation.end();
 		try {
 			emprestimoService.fazerDevolucao(emprestimo, true);
 		} catch (BibliotecaException e) {
@@ -81,14 +83,16 @@ public class EmprestimoBean extends ClasseAbstrata {
 
 	public String confirmaSaldoDevedor(Emprestimo emp) {
 		try {
-			emprestimo = emprestimoService.capturaEmprestimo(emp);
-			if (emprestimo.getId() != null && emprestimo.getMulta() > 0) {
+			this.emprestimo = emprestimoService.capturaEmprestimo(emp);
+			if (emprestimo.getId() != null
+					&& ((emprestimo.getMulta() == null) || (emprestimo
+							.getMulta() == 0))) {
+				emprestimoService.fazerDevolucao(emprestimo, false);
+			} else if (emprestimo.getId() != null && emprestimo.getMulta() > 0) {
 				return EnderecoPaginas.PAGINA_CONFIRMACAO_DEVOLVER;
 
 			}
-			if (emprestimo.getId() != null && !(emprestimo.getMulta() > 0)) {
-				emprestimoService.fazerDevolucao(emprestimo, false);
-			}
+
 		} catch (BibliotecaException e) {
 			reportarMensagemDeErro("Erro ao realizar esta operação!"
 					+ e.getMessage());
@@ -97,14 +101,12 @@ public class EmprestimoBean extends ClasseAbstrata {
 	}
 
 	public String efetuarDevolucao() {
-		conversation.end();
-		if (emprestimo.getIsbnLivro() != null
-				&& emprestimo.getMatriculaAluno() != null) {
-			confirmaSaldoDevedor(emprestimo);
-			reportarMensagemDeSucesso("Devolução realizada com sucesso!");
+		String proxPagina = confirmaSaldoDevedor(emprestimo);
+		if (proxPagina.equals(EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS)) {
+			// conversation.end();
 		}
+		return proxPagina;
 
-		return EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS;
 	}
 
 	public Emprestimo getEmprestimo() {
