@@ -39,6 +39,9 @@ public class Emprestimo implements Serializable {
 	private String nomeLivro;
 
 	@Column
+	private Double multa;
+
+	@Column
 	@Temporal(TemporalType.DATE)
 	private Date dataEmprestimo;
 
@@ -103,6 +106,14 @@ public class Emprestimo implements Serializable {
 
 	public void setDataDevolucao(Date dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
+	}
+
+	public Double getMulta() {
+		return multa;
+	}
+
+	public void setMulta(Double multa) {
+		this.multa = multa;
 	}
 
 	@Override
