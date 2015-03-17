@@ -32,10 +32,12 @@
 						value="Este empréstimo está com atraso! Receber multa de R$ #{emprestimoBean.emprestimo.multa} agora?" />
 					<h:form>
 						<center>
-							<p:commandButton action="#{emprestimoBean.deletar}"
+							<p:commandButton action="#{emprestimoBean.pagarAgora}"
 								value="Pagar Agora" icon="ui-icon-close" />
+								<p:commandButton action="#{emprestimoBean.pagarDepois}"
+								value="Pagar Depois" icon="ui-icon-close" />
 							<p:commandButton action="#{deletarLivroBean.cancel}"
-								value="Pagar Depois" icon="ui-icon-cancel" />
+								value="Cancelar" icon="ui-icon-cancel" />
 						</center>
 					</h:form>
 				</p:panelGrid>

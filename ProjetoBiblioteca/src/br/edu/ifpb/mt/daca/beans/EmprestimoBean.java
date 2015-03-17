@@ -59,25 +59,37 @@ public class EmprestimoBean extends ClasseAbstrata {
 	}
 
 	public void pagarAgora() {
-		
-	}
-	
-	public void pagarDepois() {
-		
+		try {
+			emprestimoService.fazerDevolucao(emprestimo, true);
+		} catch (BibliotecaException e) {
+			reportarMensagemDeErro("Erro ao realizar o pagamento da multa!"
+					+ e.getMessage());
+		}
 	}
 
-	
+	public void pagarDepois() {
+		try {
+			emprestimoService.fazerDevolucao(emprestimo, false);
+		} catch (BibliotecaException e) {
+			reportarMensagemDeErro("Erro ao realizar o pagamento da multa posteriormente!"
+					+ e.getMessage());
+		}
+
+	}
+
 	public void confirmaSaldoDevedor(Emprestimo emp) {
 		try {
 			emprestimo = emprestimoService.capturaEmprestimo(emp);
 			if (emprestimo.getId() != null && emprestimo.getMulta() > 0) {
 				emprestimoService.fazerDevolucao(emprestimo, true);
+
 			}
 			if (emprestimo.getId() != null && !(emprestimo.getMulta() > 0)) {
 				emprestimoService.fazerDevolucao(emprestimo, false);
 			}
 		} catch (BibliotecaException e) {
-			e.printStackTrace();
+			reportarMensagemDeErro("Erro ao realizar esta operação!"
+					+ e.getMessage());
 		}
 
 	}
