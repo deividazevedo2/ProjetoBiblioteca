@@ -96,24 +96,27 @@ public class LivroDAO extends DAO {
 		return resultado;
 	}
 
-	public List<Livro> buscarLivroPeloNome(String tituloLivro)
-			throws BibliotecaException {
+	public Livro buscarLivroPeloIsbn(Long isbnLivro) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		List<Livro> resultado = null;
-		if (tituloLivro == null) {
-			tituloLivro = "";
+		Livro livro = null;
+		if (isbnLivro == null) {
+			isbnLivro = Long.valueOf("");
 		}
 		try {
 			TypedQuery<Livro> query = em.createQuery(
-					"select l from Livro l where l.titulo like :titulo",
+					"select l from Livro l where l.isbn like :isbn",
 					Livro.class);
-			query.setParameter("titulo", "%" + tituloLivro + "%");
+			query.setParameter("isbn", isbnLivro);
 			resultado = query.getResultList();
 		} catch (PersistenceException pe) {
 			throw new BibliotecaException(
 					"Erro ao buscar livro com o nome informado.", pe);
 		}
-		return resultado;
+		for (Livro l : resultado) {
+			livro = l;
+		}
+		return livro;
 	}
 
 }
