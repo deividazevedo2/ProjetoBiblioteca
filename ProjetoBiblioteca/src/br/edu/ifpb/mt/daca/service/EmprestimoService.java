@@ -45,47 +45,56 @@ public class EmprestimoService implements Serializable {
 	}
 
 	@TransacionalCdi
-	public void fazerDevolucao(Emprestimo emprestimo)
+	public void fazerDevolucao(Emprestimo emprestimo, Boolean devedor)
 			throws BibliotecaException {
 		try {
-			verificaDevolucao(emprestimo);
+			verificaDevolucao(emprestimo, devedor);
 		} catch (BibliotecaException e) {
 			throw new BibliotecaException(e.getMessage());
 		}
 	}
 
-	public void verificaDevolucao(Emprestimo emprestimo)
+	public void verificaDevolucao(Emprestimo emprestimo, Boolean devedor)
 			throws BibliotecaException {
 		Aluno aluno = alunoDao.buscarAlunoPelaMatricula(emprestimo
 				.getMatriculaAluno());
 		Livro livro = livroDao.buscarLivroPeloIsbn(emprestimo.getIsbnLivro());
 		if (ge.verificaParametrosNulos(aluno, livro)) {
 			List<Livro> livros = ge.pegaListaDeLivros(aluno);
-			devolver(livro, aluno, livros, emprestimo);
+			devolver(livro, aluno, livros, emprestimo, devedor);
 		}
 	}
 
-	private void devolver(Livro livro, Aluno aluno, List<Livro> livros,
-			Emprestimo emprestimo) throws BibliotecaException {
+	public Emprestimo capturaEmprestimo(Emprestimo emprestimo)
+			throws BibliotecaException {
+		List<Emprestimo> emprestimos;
+		try {
+			emprestimos = getAll(emprestimo.getMatriculaAluno(),
+					emprestimo.getIsbnLivro(), false);
+			if (!emprestimos.isEmpty()) {
+				emprestimo = emprestimos.get(0);
+			}
+		} catch (BibliotecaException e) {
+			throw new BibliotecaException(e.getMessage());
+		}
+		return emprestimo;
 
+	}
+
+	private void devolver(Livro livro, Aluno aluno, List<Livro> livros,
+			Emprestimo emprestimo, Boolean devedor) throws BibliotecaException {
+
+		emprestimo = capturaEmprestimo(emprestimo);
 		if (livros.contains(livro)) {
 			livros.remove(livro);
 			livro.setExemplares(livro.getExemplares() + 1);
 			aluno.setLivros(livros);
+			if (devedor)
+				aluno.setSaldoDevedor(emprestimo.getMulta());
+			emprestimoDao.deletar(emprestimo);
 			livroDao.alterar(livro);
 			alunoDao.alterar(aluno);
-			emprestimoDao.deletar(emprestimo);
-
 		}
-	}
-
-	public Emprestimo getById(Integer idEmprestimo) throws BibliotecaException {
-		try {
-			return this.emprestimoDao.buscar(idEmprestimo);
-		} catch (PersistenceException e) {
-			throw new BibliotecaException(e.getMessage(), e);
-		}
-
 	}
 
 	@TransacionalCdi

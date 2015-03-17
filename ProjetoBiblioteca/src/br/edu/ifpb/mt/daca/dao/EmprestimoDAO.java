@@ -98,10 +98,6 @@ public class EmprestimoDAO extends DAO {
 
 	public void deletar(Emprestimo emprestimo) throws BibliotecaException {
 		EntityManager em = getEntityManager();
-		List<Emprestimo> emprestimos = getAll(emprestimo.getMatriculaAluno(),
-				emprestimo.getIsbnLivro(), false);
-		if (!emprestimos.isEmpty())
-			emprestimo = emprestimos.get(0);
 		try {
 			emprestimo = em.merge(emprestimo);
 			em.remove(emprestimo);

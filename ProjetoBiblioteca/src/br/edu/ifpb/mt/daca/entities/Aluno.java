@@ -30,6 +30,17 @@ public class Aluno extends Pessoa {
 	@JoinTable(name = "Livros_Lidos", joinColumns = @JoinColumn(name = "Matricula"), inverseJoinColumns = @JoinColumn(name = "ISBN_Livro"))
 	private List<Livro> livros;
 
+	@Column
+	private Double saldoDevedor;
+
+	public Double getSaldoDevedor() {
+		return saldoDevedor;
+	}
+
+	public void setSaldoDevedor(Double saldoDevedor) {
+		this.saldoDevedor = saldoDevedor;
+	}
+
 	public Long getMatricula() {
 		return matricula;
 	}

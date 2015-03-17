@@ -58,17 +58,27 @@ public class EmprestimoBean extends ClasseAbstrata {
 		return EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS;
 	}
 
-	public String efetuarDevolucao() {
-		conversation.end();
+	public void confirmaSaldoDevedor(Emprestimo emp) {
 		try {
-			if (emprestimo.getIsbnLivro() != null
-					&& emprestimo.getMatriculaAluno() != null) {
-				emprestimoService.fazerDevolucao(emprestimo);
-				reportarMensagemDeSucesso("Devolução realizada com sucesso!");
+			emprestimo = emprestimoService.capturaEmprestimo(emp);
+			if (emprestimo.getId() != null && emprestimo.getMulta() > 0) {
+				emprestimoService.fazerDevolucao(emprestimo, true);
+			}
+			if (emprestimo.getId() != null && !(emprestimo.getMulta() > 0)) {
+				emprestimoService.fazerDevolucao(emprestimo, false);
 			}
 		} catch (BibliotecaException e) {
-			reportarMensagemDeErro(e.getMessage());
-			return null;
+			e.printStackTrace();
+		}
+
+	}
+
+	public String efetuarDevolucao() {
+		conversation.end();
+		if (emprestimo.getIsbnLivro() != null
+				&& emprestimo.getMatriculaAluno() != null) {
+			confirmaSaldoDevedor(emprestimo);
+			reportarMensagemDeSucesso("Devolução realizada com sucesso!");
 		}
 
 		return EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS;
