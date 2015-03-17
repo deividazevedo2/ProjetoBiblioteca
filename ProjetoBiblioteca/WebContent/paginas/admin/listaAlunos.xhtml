@@ -34,9 +34,9 @@
 				<h:outputText value="#{aluno.nome}" />
 			</p:column>
 
-			<p:column headerText="Matrícula">
+			<p:column headerText="Selecionar">
 				<p:commandButton title="Selecionar" icon="ui-icon-check"
-					action="#{editarAlunoBean.selecionar(aluno)}" process="@this" />
+					action="#{emprestimoBean.selecionarAluno(aluno)}" process="@this" />
 			</p:column>
 
 		</p:dataTable>

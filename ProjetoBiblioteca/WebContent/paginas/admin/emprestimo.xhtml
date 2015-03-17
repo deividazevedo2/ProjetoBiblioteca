@@ -36,10 +36,10 @@
 							required="true" />
 						<p:spacer width="10px" />
 						<p:commandButton icon="ui-icon-search" title="Pesquisar"
-							action="#{editarAlunoBean.abrirDialogo}" process="@this"
+							action="#{emprestimoBean.abrirDialogoAluno}" process="@this"
 							update="@none">
 							<p:ajax event="dialogReturn"
-								listener="#{editarAlunoBean.alunoSelecionado}" process="@this"
+								listener="#{emprestimoBean.alunoSelecionado}" process="@this"
 								update="aluno" />
 						</p:commandButton>
 					</h:panelGroup>
@@ -50,10 +50,10 @@
 							value="#{emprestimoBean.emprestimo.isbnLivro}" required="true" />
 						<p:spacer width="10px" />
 						<p:commandButton icon="ui-icon-search" title="Pesquisar"
-							action="#{editarLivroBean.abrirDialogo}" process="@this"
+							action="#{emprestimoBean.abrirDialogoLivro}" process="@this"
 							update="@none">
 							<p:ajax event="dialogReturn"
-								listener="#{editarLivroBean.livroSelecionado}" process="@this"
+								listener="#{emprestimoBean.livroSelecionado}" process="@this"
 								update="livro" />
 						</p:commandButton>
 					</h:panelGroup>
