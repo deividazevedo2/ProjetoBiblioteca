@@ -90,7 +90,8 @@ public class EmprestimoService implements Serializable {
 			livro.setExemplares(livro.getExemplares() + 1);
 			aluno.setLivros(livros);
 			if (devedor)
-				aluno.setSaldoDevedor(emprestimo.getMulta());
+				aluno.setSaldoDevedor(emprestimo.getMulta()
+						+ aluno.getSaldoDevedor());
 			emprestimoDao.deletar(emprestimo);
 			livroDao.alterar(livro);
 			alunoDao.alterar(aluno);
