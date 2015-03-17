@@ -19,7 +19,7 @@
 	</f:metadata>
 
 	<ui:define name="title">
-	Biblioteca - Novo Empréstimo
+	Biblioteca - Empréstimo/Devolução
 	</ui:define>
 
 	<ui:define name="center">
@@ -32,7 +32,8 @@
 					<h:outputText value="Aluno: " for="aluno" />
 					<h:panelGroup>
 						<p:inputText id="aluno"
-							value="#{emprestimoBean.emprestimo.matriculaAluno}" required="true"/>
+							value="#{emprestimoBean.emprestimo.matriculaAluno}"
+							required="true" />
 						<p:spacer width="10px" />
 						<p:commandButton icon="ui-icon-search" title="Pesquisar"
 							action="#{editarAlunoBean.abrirDialogo}" process="@this"
@@ -46,7 +47,7 @@
 					<h:outputText value="Livro: " for="livro" />
 					<h:panelGroup>
 						<p:inputText id="livro"
-							value="#{emprestimoBean.emprestimo.isbnLivro}" required="true"/>
+							value="#{emprestimoBean.emprestimo.isbnLivro}" required="true" />
 						<p:spacer width="10px" />
 						<p:commandButton icon="ui-icon-search" title="Pesquisar"
 							action="#{editarLivroBean.abrirDialogo}" process="@this"
@@ -59,8 +60,11 @@
 
 					<br />
 					<f:facet name="footer">
-						<p:commandButton value="Efetuar empréstimo" icon="ui-icon-cart"
+						<p:commandButton value="Efetuar Empréstimo" icon="ui-icon-cart"
 							action="#{emprestimoBean.efetuarEmprestimo}" />
+						<p:commandButton value="Efetuar Devolução"
+							icon="ui-icon-arrowreturnthick-1-w"
+							action="#{emprestimoBean.efetuarDevolucao}" />
 						<p:commandButton id="limparBotao" value="Limpar"
 							update="camposEmprestimo" process="@this" icon="ui-icon-close">
 							<p:resetInput target="camposEmprestimo" />

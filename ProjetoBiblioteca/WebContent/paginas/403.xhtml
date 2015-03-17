@@ -12,9 +12,14 @@
 		Biblioteca - Acesso Restrito
 	</ui:define>
 	<ui:define name="center">
-			<p:panel columns="1" style="width : 100%; text-align:center">
-				<h:outputText value="Você não tem acesso a este recurso do sistema!" />
-			</p:panel>
+		<p:panel columns="1" style="width : 100%; text-align:center">
+			<h:outputText value="Você não tem acesso a este recurso do sistema!" />
+			<center>
+				<h:form>
+					<p:button value="Voltar" outcome="home.xhtml" />
+				</h:form>
+			</center>
+		</p:panel>
 	</ui:define>
 </ui:composition>
 

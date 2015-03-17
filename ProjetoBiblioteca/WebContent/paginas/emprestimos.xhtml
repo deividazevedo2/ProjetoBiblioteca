@@ -68,14 +68,8 @@
 			</p:dataTable>
 			<br />
 
-			<p:button value="Novo Empréstimo" icon="ui-icon-plus"
+			<p:button value="Empréstimo/Devolução" icon="ui-icon-plus"
 				outcome="/paginas/admin/emprestimo.xhtml" />
-			<p:button value="Devolução" icon="ui-icon-arrowreturnthick-1-w"
-				outcome="/paginas/admin/devolucao.xhtml" />
-			<p:commandButton value="Empréstimos Expirados" icon="ui-icon-search"
-				action="#{indexEmprestimosBean.abrirDialogo}" process="@this"
-				update="@none">
-			</p:commandButton>
 		</p:fieldset>
 	</ui:define>
 </ui:composition>

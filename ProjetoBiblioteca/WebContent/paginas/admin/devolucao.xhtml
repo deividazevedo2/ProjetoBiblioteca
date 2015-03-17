@@ -27,7 +27,7 @@
 			showSummary="true" />
 			
 		<h:form>
-			<p:fieldset legend="Empréstimo/Devolução">
+			<p:fieldset legend="Devolução">
 				<h:panelGrid id="camposEmprestimo" columns="2">
 
 					<h:outputText value="Aluno: " for="aluno" />
@@ -61,7 +61,7 @@
 
 					<br />
 					<f:facet name="footer">
-						<p:commandButton value="Efetuar devolução"
+						<p:commandButton value="Efetuar Devolução"
 							icon="ui-icon-arrowreturnthick-1-w"
 							action="#{emprestimoBean.efetuarDevolucao}" />
 						<p:commandButton id="limparBotao" value="Limpar"

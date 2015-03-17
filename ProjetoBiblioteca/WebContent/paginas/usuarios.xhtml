@@ -19,20 +19,23 @@
 		<p:fieldset legend="Usuários">
 			<h:form id="formFiltro">
 				<h:outputText value="Nome do Usuário: " />
-				<p:inputText id="nomeFiltro" value="#{indexUsuarioBean.firstNameFiltro}"
-					style="width:250px" />
+				<p:inputText id="nomeFiltro"
+					value="#{indexUsuarioBean.firstNameFiltro}" style="width:250px" />
 				<br />
 				<br />
 				<p:commandButton value="Filtrar" id="filtrarBotao"
-					action="#{indexUsuarioBean.filtrar}" update=":idTabela" />
+					action="#{indexUsuarioBean.filtrar}" update=":idTabela"
+					icon="ui-icon-search" />
 				<p:commandButton id="limparBotao" value="Limpar"
-					action="#{indexUsuarioBean.limpar}" update="formFiltro" process="@this">
+					action="#{indexUsuarioBean.limpar}" update="formFiltro"
+					process="@this" icon="ui-icon-close">
 					<p:resetInput target="formFiltro" />
 				</p:commandButton>
 
 			</h:form>
 			<br />
-			<p:dataTable id="idTabela" var="user" value="#{indexUsuarioBean.users}"
+			<p:dataTable id="idTabela" var="user"
+				value="#{indexUsuarioBean.users}"
 				emptyMessage="Nenhum registro encontrado."
 				style="text-align : center" paginator="true" rows="6">
 
@@ -53,20 +56,22 @@
 				</p:column>
 
 				<p:column headerText="Editar">
-					<p:link outcome="/paginas/admin/editarUsuario.xhtml" value="Editar Usuário">
+					<p:link outcome="/paginas/admin/editarUsuario.xhtml"
+						value="Editar Usuário">
 						<f:param name="user" value="#{user.id}" />
 					</p:link>
 				</p:column>
 
 				<p:column headerText="Deletar">
-					<p:link outcome="/paginas/admin/deletarUsuario.xhtml" value="Deletar Usuário">
+					<p:link outcome="/paginas/admin/deletarUsuario.xhtml"
+						value="Deletar Usuário">
 						<f:param name="user" value="#{user.id}" />
 					</p:link>
 				</p:column>
 			</p:dataTable>
 			<br />
-			<p:button value="Novo Usuário" outcome="/paginas/admin/editarUsuario.xhtml"
-				icon="ui-icon-plus" />
+			<p:button value="Novo Usuário"
+				outcome="/paginas/admin/editarUsuario.xhtml" icon="ui-icon-plus" />
 		</p:fieldset>
 	</ui:define>
 </ui:composition>
