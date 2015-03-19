@@ -49,6 +49,10 @@ public class Emprestimo implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataDevolucao;
 
+	@Column
+	@Temporal(TemporalType.DATE)
+	private Date dataEntregue;
+
 	public Emprestimo() {
 	}
 
@@ -108,6 +112,14 @@ public class Emprestimo implements Serializable {
 		this.dataDevolucao = dataDevolucao;
 	}
 
+	public Date getDataEntregue() {
+		return dataEntregue;
+	}
+
+	public void setDataEntregue(Date dataEntregue) {
+		this.dataEntregue = dataEntregue;
+	}
+
 	public Double getMulta() {
 		return multa;
 	}
@@ -124,11 +136,18 @@ public class Emprestimo implements Serializable {
 				+ ((dataDevolucao == null) ? 0 : dataDevolucao.hashCode());
 		result = prime * result
 				+ ((dataEmprestimo == null) ? 0 : dataEmprestimo.hashCode());
+		result = prime * result
+				+ ((dataEntregue == null) ? 0 : dataEntregue.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((isbnLivro == null) ? 0 : isbnLivro.hashCode());
 		result = prime * result
 				+ ((matriculaAluno == null) ? 0 : matriculaAluno.hashCode());
+		result = prime * result + ((multa == null) ? 0 : multa.hashCode());
+		result = prime * result
+				+ ((nomeAluno == null) ? 0 : nomeAluno.hashCode());
+		result = prime * result
+				+ ((nomeLivro == null) ? 0 : nomeLivro.hashCode());
 		return result;
 	}
 
@@ -151,6 +170,11 @@ public class Emprestimo implements Serializable {
 				return false;
 		} else if (!dataEmprestimo.equals(other.dataEmprestimo))
 			return false;
+		if (dataEntregue == null) {
+			if (other.dataEntregue != null)
+				return false;
+		} else if (!dataEntregue.equals(other.dataEntregue))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -166,6 +190,21 @@ public class Emprestimo implements Serializable {
 				return false;
 		} else if (!matriculaAluno.equals(other.matriculaAluno))
 			return false;
+		if (multa == null) {
+			if (other.multa != null)
+				return false;
+		} else if (!multa.equals(other.multa))
+			return false;
+		if (nomeAluno == null) {
+			if (other.nomeAluno != null)
+				return false;
+		} else if (!nomeAluno.equals(other.nomeAluno))
+			return false;
+		if (nomeLivro == null) {
+			if (other.nomeLivro != null)
+				return false;
+		} else if (!nomeLivro.equals(other.nomeLivro))
+			return false;
 		return true;
 	}
 
@@ -173,8 +212,9 @@ public class Emprestimo implements Serializable {
 	public String toString() {
 		return "Emprestimo [id=" + id + ", matriculaAluno=" + matriculaAluno
 				+ ", nomeAluno=" + nomeAluno + ", isbnLivro=" + isbnLivro
-				+ ", nomeLivro=" + nomeLivro + ", dataEmprestimo="
-				+ dataEmprestimo + ", dataDevolucao=" + dataDevolucao + "]";
+				+ ", nomeLivro=" + nomeLivro + ", multa=" + multa
+				+ ", dataEmprestimo=" + dataEmprestimo + ", dataDevolucao="
+				+ dataDevolucao + ", dataEntregue=" + dataEntregue + "]";
 	}
 
 }
