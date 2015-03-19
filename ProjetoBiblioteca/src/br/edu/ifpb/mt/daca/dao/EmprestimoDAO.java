@@ -59,7 +59,7 @@ public class EmprestimoDAO extends DAO {
 			jpql += " and e.isbnLivro like :isbnLivro";
 		}
 		if (expirados) {
-			jpql += " and e.dataDevolucao < curdate() ORDER BY e.dataDevolucao";
+			jpql += " and e.dataDevolucao < curdate()";
 		}
 		if (historico) {
 			jpql += " and e.dataEntregue IS NULL";

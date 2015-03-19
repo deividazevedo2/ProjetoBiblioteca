@@ -85,7 +85,7 @@ public class IndexEmprestimosBean extends ClasseAbstrata {
 			emprestimosEmAberto = emprestimoService.getAll(matriculaAluno,
 					isbnLivro, false, true);
 			emprestimosExpirados = emprestimoService.getAll(null, null, true,
-					false);
+					true);
 			historicoDeEmprestimos = emprestimoService.getAll(matriculaAluno,
 					isbnLivro, false, false);
 		} catch (BibliotecaException e) {
