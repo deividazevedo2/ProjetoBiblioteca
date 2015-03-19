@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<f:metadata>
+		<o:viewParam name="aluno" value="#{editarAlunoBean.aluno}"
+			converter="#{alunoConverter}" />
+		<f:event listener="#{editarAlunoBean.preRenderView()}"
+			type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="title">
+	Biblioteca - Quitar Dívida
+	</ui:define>
+
+	<ui:define name="center">
+
+		<p:growl id="messages" autoUpdate="true" showDetail="true"
+			showSummary="true" />
+
+		<h:form>
+			<p:fieldset legend="Pagamento de Dívidas">
+				<h:panelGrid id="camposAluno" columns="2"
+					value="#{editarAlunoBean.alunos}"
+					emptyMessage="Nenhum registro encontrado.">
+
+					<p:outputLabel value="Id: "
+						rendered="#{!empty editarAlunoBean.aluno.id}" />
+					<p:outputLabel value="#{editarAlunoBean.aluno.id}"
+						rendered="#{!empty editarAlunoBean.aluno.id}" />
+
+					<h:outputText value="Nome: " />
+					<p:outputLabel value="#{editarAlunoBean.aluno.nome}" />
+
+					<p:outputLabel value="Saldo Devedor: " />
+					<p:outputLabel value="#{editarAlunoBean.aluno.saldoDevedor}" />
+
+					<h:outputText value="Pagar: R$ " />
+					<p:inputText id="pagamento" value="#{editarAlunoBean.pagamento}"
+						style="width:250px" required="true" />
+
+
+					<f:facet name="footer">
+						<p:commandButton action="#{editarAlunoBean.salvarAluno}"
+							value="Efetuar Pagamento" icon="ui-icon-disk" />
+
+						<p:button outcome="/paginas/alunos.xhtml" value="Cancelar"
+							icon="ui-icon-cancel" />
+					</f:facet>
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
