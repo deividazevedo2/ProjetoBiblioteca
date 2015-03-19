@@ -19,6 +19,7 @@ public class AlunoDAO extends DAO {
 	public void salvar(Aluno aluno) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		try {
+			aluno.setSaldoDevedor(0.0);
 			em.persist(aluno);
 		} catch (PersistenceException pe) {
 			throw new BibliotecaException("Erro ao salvar o aluno "

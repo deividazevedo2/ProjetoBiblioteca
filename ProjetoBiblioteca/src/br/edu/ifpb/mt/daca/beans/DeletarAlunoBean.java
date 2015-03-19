@@ -39,8 +39,7 @@ public class DeletarAlunoBean extends ClasseAbstrata {
 	public String deletar() {
 		conversation.end();
 		try {
-			if ((aluno.getSaldoDevedor() == null || aluno.getSaldoDevedor() == 0)
-					&& aluno.getLivros().isEmpty()) {
+			if ((aluno.getSaldoDevedor() == 0) && aluno.getLivros().isEmpty()) {
 				alunoService.excluirAluno(aluno);
 				reportarMensagemDeSucesso("Aluno removido com sucesso!");
 			} else {
