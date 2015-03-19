@@ -24,8 +24,9 @@ public class IndexEmprestimosBean extends ClasseAbstrata {
 	 */
 	private static final long serialVersionUID = -6977557276403647255L;
 
-	private List<Emprestimo> todosEmprestimos;
+	private List<Emprestimo> emprestimosEmAberto;
 	private List<Emprestimo> emprestimosExpirados;
+	private List<Emprestimo> historicoDeEmprestimos;
 
 	@Inject
 	private EmprestimoService emprestimoService;
@@ -58,23 +59,35 @@ public class IndexEmprestimosBean extends ClasseAbstrata {
 		return emprestimosExpirados;
 	}
 
-	public List<Emprestimo> getTodosEmprestimos() {
-		return todosEmprestimos;
-	}
-
 	public void setEmprestimosExpirados(List<Emprestimo> emprestimosExpirados) {
 		this.emprestimosExpirados = emprestimosExpirados;
 	}
 
-	public void setTodosEmprestimos(List<Emprestimo> todosEmprestimos) {
-		this.todosEmprestimos = todosEmprestimos;
+	public List<Emprestimo> getEmprestimosEmAberto() {
+		return emprestimosEmAberto;
+	}
+
+	public void setEmprestimosEmAberto(List<Emprestimo> emprestimosEmAberto) {
+		this.emprestimosEmAberto = emprestimosEmAberto;
+	}
+
+	public List<Emprestimo> getHistoricoDeEmprestimos() {
+		return historicoDeEmprestimos;
+	}
+
+	public void setHistoricoDeEmprestimos(
+			List<Emprestimo> historicoDeEmprestimos) {
+		this.historicoDeEmprestimos = historicoDeEmprestimos;
 	}
 
 	public void filtrar() {
 		try {
-			todosEmprestimos = emprestimoService.getAll(matriculaAluno,
-					isbnLivro, false);
-			emprestimosExpirados = emprestimoService.getAll(null, null, true);
+			emprestimosEmAberto = emprestimoService.getAll(matriculaAluno,
+					isbnLivro, false, false);
+			emprestimosExpirados = emprestimoService.getAll(null, null, true,
+					true);
+			historicoDeEmprestimos = emprestimoService.getAll(matriculaAluno, isbnLivro, false,
+					true);
 		} catch (BibliotecaException e) {
 			reportarMensagemDeErro(e.getMessage());
 		}
