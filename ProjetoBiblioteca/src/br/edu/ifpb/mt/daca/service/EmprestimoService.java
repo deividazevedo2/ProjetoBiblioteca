@@ -71,7 +71,7 @@ public class EmprestimoService implements Serializable {
 		List<Emprestimo> emprestimos;
 		try {
 			emprestimos = getAll(emprestimo.getMatriculaAluno(),
-					emprestimo.getIsbnLivro(), false, false);
+					emprestimo.getIsbnLivro(), false, true);
 			if (!emprestimos.isEmpty()) {
 				emprestimo = emprestimos.get(0);
 			}
@@ -90,14 +90,11 @@ public class EmprestimoService implements Serializable {
 			livros.remove(livro);
 			livro.setExemplares(livro.getExemplares() + 1);
 			aluno.setLivros(livros);
-			if (devedor && aluno.getSaldoDevedor() == 0.0) {
-				aluno.setSaldoDevedor(emprestimo.getMulta());
-			} else if (devedor && aluno.getSaldoDevedor() != 0.0) {
+			if (devedor) {
 				aluno.setSaldoDevedor(emprestimo.getMulta()
 						+ aluno.getSaldoDevedor());
 			}
 			emprestimo.setDataEntregue(new GregorianCalendar().getTime());
-			System.out.println(emprestimo);
 			emprestimoDao.alterar(emprestimo);
 			livroDao.alterar(livro);
 			alunoDao.alterar(aluno);
