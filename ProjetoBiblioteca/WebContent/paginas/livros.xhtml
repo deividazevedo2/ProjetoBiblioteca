@@ -48,22 +48,20 @@
 					<h:outputText value="#{livro.titulo}" />
 				</p:column>
 
-				<p:column headerText="Exemplares">
+				<p:column headerText="Quantidade Disponível">
 					<h:outputText value="#{livro.exemplares}" />
 				</p:column>
 
-				<!-- <p:column headerText="Autores">
-					<h:outputText value="#{livro.autores}" />
-				</p:column> -->
-
 				<p:column headerText="Editar">
-					<p:link outcome="/paginas/admin/addLivro.xhtml" value="Editar Livro">
+					<p:link outcome="/paginas/admin/addLivro.xhtml"
+						value="Editar Livro">
 						<f:param name="livro" value="#{livro.id}" />
 					</p:link>
 				</p:column>
 
 				<p:column headerText="Deletar">
-					<p:link outcome="/paginas/admin/deletarLivro.xhtml" value="Deletar Livro">
+					<p:link outcome="/paginas/admin/deletarLivro.xhtml"
+						value="Deletar Livro">
 						<f:param name="livro" value="#{livro.id}" />
 					</p:link>
 				</p:column>
