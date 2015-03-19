@@ -44,7 +44,7 @@ public class EmprestimoDAO extends DAO {
 	}
 
 	public List<Emprestimo> getAll(Long matriculaAluno, Long isbnLivro,
-			Boolean expirados) throws BibliotecaException {
+			Boolean expirados, Boolean historico) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		List<Emprestimo> resultado = null;
 
@@ -57,8 +57,11 @@ public class EmprestimoDAO extends DAO {
 		if (isbnLivro != null && !isbnLivro.equals("")) {
 			jpql += " and e.isbnLivro like :isbnLivro";
 		}
-		if (expirados == true) {
+		if (expirados) {
 			jpql += " and e.dataDevolucao < curdate() ORDER BY e.dataDevolucao";
+		}
+		if (!historico) {
+			jpql += " and e.dataEntregue IS NULL";
 		}
 
 		TypedQuery<Emprestimo> query = em.createQuery(jpql, Emprestimo.class);
@@ -82,8 +85,7 @@ public class EmprestimoDAO extends DAO {
 		return resultado;
 	}
 
-	public Emprestimo alterarEmprestimo(Emprestimo emprestimo)
-			throws BibliotecaException {
+	public Emprestimo alterar(Emprestimo emprestimo) throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		Emprestimo resultado = emprestimo;
 		try {
@@ -113,20 +115,18 @@ public class EmprestimoDAO extends DAO {
 				String devolucao = emprestimo.getDataDevolucao().toString();
 				Date ultima = new SimpleDateFormat("yyyy-MM-dd")
 						.parse(devolucao);
-				System.out.println(emprestimo);
 				if (ultima.before(hoje)) {
 					Long diferenca = hoje.getTime() - ultima.getTime();
 					Long diferencaDeDias = diferenca / (24 * 60 * 60 * 1000);
 					emprestimo.setMulta(diferencaDeDias * 0.50);
 
-					alterarEmprestimo(emprestimo);
+					alterar(emprestimo);
 				} else {
-					alterarEmprestimo(emprestimo);
+					alterar(emprestimo);
 				}
 			}
 		} catch (ParseException | BibliotecaException e) {
 			e.printStackTrace();
 		}
-
 	}
 }
