@@ -16,7 +16,7 @@
 	<ui:define name="center">
 		<p:growl id="messages" autoUpdate="true" showDetail="true"
 			showSummary="true" />
-		<p:fieldset legend="Empréstimos">
+		<p:fieldset legend="Empréstimos em Aberto">
 			<h:form id="camposFiltro">
 				<h:outputText value="Matrícula do aluno: " />
 				<p:inputText id="matriculaFiltro"
@@ -36,7 +36,7 @@
 			</h:form>
 			<br />
 			<p:dataTable id="idTabela" var="emprestimo"
-				value="#{indexEmprestimosBean.todosEmprestimos}"
+				value="#{indexEmprestimosBean.emprestimosEmAberto}"
 				emptyMessage="Nenhum registro encontrado." paginator="true" rows="6"
 				style="text-align: center">
 
@@ -64,6 +64,11 @@
 				<p:column headerText="Data de devolução">
 					<h:outputText value="#{emprestimo.dataDevolucao}" />
 				</p:column>
+
+				<p:column headerText="Data Entregue">
+					<h:outputText value="#{emprestimo.dataEntregue}" />
+				</p:column>
+
 
 			</p:dataTable>
 			<br />
