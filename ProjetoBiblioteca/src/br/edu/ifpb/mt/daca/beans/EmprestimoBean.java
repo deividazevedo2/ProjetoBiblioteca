@@ -17,7 +17,6 @@ import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 import br.edu.ifpb.mt.daca.service.EmprestimoService;
 
 @Named
-// @ConversationScoped
 @SessionScoped
 public class EmprestimoBean extends ClasseAbstrata {
 
@@ -30,20 +29,13 @@ public class EmprestimoBean extends ClasseAbstrata {
 	@Inject
 	private EmprestimoService emprestimoService;
 
-	// @Inject
-	// private Conversation conversation;
-
 	public void preRenderView() {
 		if (emprestimo == null) {
 			emprestimo = new Emprestimo();
 		}
-		// if (conversation.isTransient()) {
-		// conversation.begin();
-		// }
 	}
 
 	public String efetuarEmprestimo() {
-		// conversation.end();
 		try {
 			if (emprestimo.getIsbnLivro() != null
 					&& emprestimo.getMatriculaAluno() != null) {
@@ -59,7 +51,6 @@ public class EmprestimoBean extends ClasseAbstrata {
 	}
 
 	public String pagarAgora() {
-		// conversation.end();
 		try {
 			emprestimoService.fazerDevolucao(emprestimo, false);
 		} catch (BibliotecaException e) {
@@ -71,7 +62,6 @@ public class EmprestimoBean extends ClasseAbstrata {
 	}
 
 	public String pagarDepois() {
-		// conversation.end();
 		try {
 			emprestimoService.fazerDevolucao(emprestimo, true);
 		} catch (BibliotecaException e) {
@@ -102,9 +92,6 @@ public class EmprestimoBean extends ClasseAbstrata {
 
 	public String efetuarDevolucao() {
 		String proxPagina = confirmaSaldoDevedor(emprestimo);
-		if (proxPagina.equals(EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS)) {
-			// conversation.end();
-		}
 		return proxPagina;
 
 	}
