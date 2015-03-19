@@ -85,17 +85,20 @@ public class EmprestimoService implements Serializable {
 	private void devolver(Livro livro, Aluno aluno, List<Livro> livros,
 			Emprestimo emprestimo, Boolean devedor) throws BibliotecaException {
 
-		Emprestimo emp = capturaEmprestimo(emprestimo);
+		emprestimo = capturaEmprestimo(emprestimo);
 		if (livros.contains(livro)) {
 			livros.remove(livro);
 			livro.setExemplares(livro.getExemplares() + 1);
 			aluno.setLivros(livros);
-			if (devedor && aluno.getSaldoDevedor() != null)
-				aluno.setSaldoDevedor(emp.getMulta() + aluno.getSaldoDevedor());
-			else if (devedor && aluno.getSaldoDevedor() == null)
-				aluno.setSaldoDevedor(emp.getMulta());
-			emp.setDataEntregue(new GregorianCalendar().getTime());
-			emprestimoDao.alterar(emp);
+			if (devedor && aluno.getSaldoDevedor() == 0.0) {
+				aluno.setSaldoDevedor(emprestimo.getMulta());
+			} else if (devedor && aluno.getSaldoDevedor() != 0.0) {
+				aluno.setSaldoDevedor(emprestimo.getMulta()
+						+ aluno.getSaldoDevedor());
+			}
+			emprestimo.setDataEntregue(new GregorianCalendar().getTime());
+			System.out.println(emprestimo);
+			emprestimoDao.alterar(emprestimo);
 			livroDao.alterar(livro);
 			alunoDao.alterar(aluno);
 		}

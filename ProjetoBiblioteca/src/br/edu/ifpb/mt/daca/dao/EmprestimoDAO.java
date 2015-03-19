@@ -23,6 +23,7 @@ public class EmprestimoDAO extends DAO {
 			throws BibliotecaException {
 		EntityManager em = getEntityManager();
 		try {
+			emprestimo.setMulta(0.0);
 			em.persist(emprestimo);
 		} catch (PersistenceException e) {
 			throw new BibliotecaException("Erro ao fazer o empréstimo", e);

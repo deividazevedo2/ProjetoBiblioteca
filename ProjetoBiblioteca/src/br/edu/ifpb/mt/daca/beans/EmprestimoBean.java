@@ -74,9 +74,7 @@ public class EmprestimoBean extends ClasseAbstrata {
 	public String confirmaSaldoDevedor(Emprestimo emp) {
 		try {
 			this.emprestimo = emprestimoService.capturaEmprestimo(emp);
-			if (emprestimo.getId() != null
-					&& ((emprestimo.getMulta() == null) || (emprestimo
-							.getMulta() == 0))) {
+			if (emprestimo.getId() != null && emprestimo.getMulta() == 0) {
 				emprestimoService.fazerDevolucao(emprestimo, false);
 			} else if (emprestimo.getId() != null && emprestimo.getMulta() > 0) {
 				return EnderecoPaginas.PAGINA_CONFIRMACAO_DEVOLVER;
