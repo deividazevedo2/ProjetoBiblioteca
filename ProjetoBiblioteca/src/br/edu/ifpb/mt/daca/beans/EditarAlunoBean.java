@@ -16,6 +16,7 @@ public class EditarAlunoBean extends ClasseAbstrata {
 	private static final long serialVersionUID = -79727005056917194L;
 
 	private Aluno aluno;
+	private Double pagamento;
 
 	@Inject
 	private AlunoService alunoService;
@@ -35,7 +36,11 @@ public class EditarAlunoBean extends ClasseAbstrata {
 	public String salvarAluno() {
 		conversation.end();
 		try {
-			if (aluno.getId() != null) {
+			if (pagamento != null && aluno.getSaldoDevedor() != null
+					&& aluno.getId() != null) {
+				this.aluno = alunoService.getById(aluno.getId());
+				realizarPagamento();
+			} else if (pagamento == null && aluno.getId() != null) {
 				alunoService.editarAluno(aluno);
 				reportarMensagemDeSucesso("Aluno " + aluno.getNome()
 						+ " atualizado com sucesso!");
@@ -52,6 +57,21 @@ public class EditarAlunoBean extends ClasseAbstrata {
 		return EnderecoPaginas.PAGINA_PRINCIPAL_ALUNOS;
 	}
 
+	public String realizarPagamento() {
+		try {
+			if (aluno.getSaldoDevedor() >= pagamento) {
+				aluno.setSaldoDevedor(aluno.getSaldoDevedor() - pagamento);
+				alunoService.editarAluno(aluno);
+				reportarMensagemDeSucesso("Pagamento realizado!");
+			} else {
+				reportarMensagemDeErro("Erro! Tente novamente.");
+			}
+		} catch (BibliotecaException e) {
+			reportarMensagemDeErro(e.getMessage());
+		}
+		return EnderecoPaginas.PAGINA_PRINCIPAL_ALUNOS;
+	}
+
 	public Aluno getAluno() {
 		return aluno;
 	}
@@ -60,4 +80,11 @@ public class EditarAlunoBean extends ClasseAbstrata {
 		this.aluno = aluno;
 	}
 
+	public Double getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Double pagamento) {
+		this.pagamento = pagamento;
+	}
 }
