@@ -8,7 +8,6 @@ import javax.persistence.PersistenceException;
 
 import br.edu.ifpb.mt.daca.dao.AlunoDAO;
 import br.edu.ifpb.mt.daca.entities.Aluno;
-import br.edu.ifpb.mt.daca.entities.Livro;
 import br.edu.ifpb.mt.daca.exception.BibliotecaException;
 import br.edu.ifpb.mt.daca.util.TransacionalCdi;
 
@@ -51,9 +50,9 @@ public class AlunoService implements Serializable {
 
 	}
 
-	public Aluno getByMatricula(Integer matricula) throws BibliotecaException {
+	public Aluno getById(Integer idAluno) throws BibliotecaException {
 		try {
-			return this.alunoDao.buscar(matricula);
+			return this.alunoDao.buscar(idAluno);
 		} catch (PersistenceException e) {
 			throw new BibliotecaException(e.getMessage(), e);
 		}
@@ -67,30 +66,6 @@ public class AlunoService implements Serializable {
 		} catch (PersistenceException e) {
 			throw new BibliotecaException(e.getMessage(), e);
 		}
-	}
-
-	public void addLivro(Livro livro) {
-
-	}
-
-	public void excluirLivro(Livro livro) {
-
-	}
-
-	public void editarLivro(Livro livro) {
-
-	}
-
-	public void buscarLivro(Long isbn) {
-
-	}
-
-	public void alugarLivro(Long isbn, Long matricula) {
-
-	}
-
-	public void devolverLivro(Long isbn, Long matricula) {
-
 	}
 
 }

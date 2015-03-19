@@ -60,7 +60,7 @@ public class EmprestimoDAO extends DAO {
 		if (expirados) {
 			jpql += " and e.dataDevolucao < curdate() ORDER BY e.dataDevolucao";
 		}
-		if (!historico) {
+		if (historico) {
 			jpql += " and e.dataEntregue IS NULL";
 		}
 

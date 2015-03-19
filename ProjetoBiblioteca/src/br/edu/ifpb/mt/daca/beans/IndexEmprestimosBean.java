@@ -83,11 +83,11 @@ public class IndexEmprestimosBean extends ClasseAbstrata {
 	public void filtrar() {
 		try {
 			emprestimosEmAberto = emprestimoService.getAll(matriculaAluno,
-					isbnLivro, false, false);
+					isbnLivro, false, true);
 			emprestimosExpirados = emprestimoService.getAll(null, null, true,
-					true);
-			historicoDeEmprestimos = emprestimoService.getAll(matriculaAluno, isbnLivro, false,
-					true);
+					false);
+			historicoDeEmprestimos = emprestimoService.getAll(matriculaAluno,
+					isbnLivro, false, false);
 		} catch (BibliotecaException e) {
 			reportarMensagemDeErro(e.getMessage());
 		}
