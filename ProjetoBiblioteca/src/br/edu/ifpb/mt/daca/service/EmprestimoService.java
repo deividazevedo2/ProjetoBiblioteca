@@ -1,6 +1,7 @@
 package br.edu.ifpb.mt.daca.service;
 
 import java.io.Serializable;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -70,7 +71,7 @@ public class EmprestimoService implements Serializable {
 		List<Emprestimo> emprestimos;
 		try {
 			emprestimos = getAll(emprestimo.getMatriculaAluno(),
-					emprestimo.getIsbnLivro(), false);
+					emprestimo.getIsbnLivro(), false, false);
 			if (!emprestimos.isEmpty()) {
 				emprestimo = emprestimos.get(0);
 			}
@@ -84,15 +85,15 @@ public class EmprestimoService implements Serializable {
 	private void devolver(Livro livro, Aluno aluno, List<Livro> livros,
 			Emprestimo emprestimo, Boolean devedor) throws BibliotecaException {
 
-		emprestimo = capturaEmprestimo(emprestimo);
+		Emprestimo emp = capturaEmprestimo(emprestimo);
 		if (livros.contains(livro)) {
 			livros.remove(livro);
 			livro.setExemplares(livro.getExemplares() + 1);
 			aluno.setLivros(livros);
 			if (devedor)
-				aluno.setSaldoDevedor(emprestimo.getMulta()
-						+ aluno.getSaldoDevedor());
-			emprestimoDao.deletar(emprestimo);
+				aluno.setSaldoDevedor(emp.getMulta() + aluno.getSaldoDevedor());
+			emp.setDataEntregue(new GregorianCalendar().getTime());
+			emprestimoDao.alterar(emp);
 			livroDao.alterar(livro);
 			alunoDao.alterar(aluno);
 		}
@@ -100,10 +101,10 @@ public class EmprestimoService implements Serializable {
 
 	@TransacionalCdi
 	public List<Emprestimo> getAll(Long matriculaAluno, Long isbnLivro,
-			Boolean expirados) throws BibliotecaException {
+			Boolean expirados, Boolean historico) throws BibliotecaException {
 		try {
 			return this.emprestimoDao.getAll(matriculaAluno, isbnLivro,
-					expirados);
+					expirados, historico);
 		} catch (PersistenceException e) {
 			throw new BibliotecaException(e.getMessage(), e);
 		}
