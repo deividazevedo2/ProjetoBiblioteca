@@ -15,4 +15,6 @@ public class EnderecoPaginas {
 	
 	public static final String PAGINA_PRINCIPAL_LOGIN = "/paginas/login" + REDIRECT_TRUE;
 	
+	public static final String PAGINA_CONFIRMACAO_DEVOLVER = "/paginas/admin/confirmarDevolucao" + REDIRECT_TRUE;
+	
 }

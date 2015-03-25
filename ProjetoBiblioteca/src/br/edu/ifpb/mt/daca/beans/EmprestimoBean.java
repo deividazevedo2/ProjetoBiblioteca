@@ -58,30 +58,32 @@ public class EmprestimoBean extends ClasseAbstrata {
 		return EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS;
 	}
 
-	public void pagarAgora() {
+	public String pagarAgora() {
 		try {
-			emprestimoService.fazerDevolucao(emprestimo, true);
+			emprestimoService.fazerDevolucao(emprestimo, false);
 		} catch (BibliotecaException e) {
 			reportarMensagemDeErro("Erro ao realizar o pagamento da multa!"
 					+ e.getMessage());
 		}
+
+		return EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS;
 	}
 
-	public void pagarDepois() {
+	public String pagarDepois() {
 		try {
-			emprestimoService.fazerDevolucao(emprestimo, false);
+			emprestimoService.fazerDevolucao(emprestimo, true);
 		} catch (BibliotecaException e) {
 			reportarMensagemDeErro("Erro ao realizar o pagamento da multa posteriormente!"
 					+ e.getMessage());
 		}
-
+		return EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS;
 	}
 
-	public void confirmaSaldoDevedor(Emprestimo emp) {
+	public String confirmaSaldoDevedor(Emprestimo emp) {
 		try {
 			emprestimo = emprestimoService.capturaEmprestimo(emp);
 			if (emprestimo.getId() != null && emprestimo.getMulta() > 0) {
-				emprestimoService.fazerDevolucao(emprestimo, true);
+				return EnderecoPaginas.PAGINA_CONFIRMACAO_DEVOLVER;
 
 			}
 			if (emprestimo.getId() != null && !(emprestimo.getMulta() > 0)) {
@@ -91,7 +93,7 @@ public class EmprestimoBean extends ClasseAbstrata {
 			reportarMensagemDeErro("Erro ao realizar esta operação!"
 					+ e.getMessage());
 		}
-
+		return EnderecoPaginas.PAGINA_PRINCIPAL_EMPRESTIMOS;
 	}
 
 	public String efetuarDevolucao() {
